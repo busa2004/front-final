@@ -1,0 +1,14 @@
+.login-container {
+    max-width: 420px;
+    margin: 0 auto;
+    margin: 0 auto;
+    margin-top: 125px;
+}
+
+.login-form-button {
+    width: 100%;
+}
+.ant-btn-primary{
+    background-color: #00B1B6;
+    border-color: #00B1B6;
+    }

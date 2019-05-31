@@ -1,0 +1,39 @@
+.signup-container {
+    margin: 0 auto;
+       
+}
+
+.page-title{
+    margin-bottom: 20px;
+}
+
+.signup-content{
+    text-align: left;
+    width: 50%;
+    margin-left: 25%;
+}
+.edit-content{
+    text-align: left;
+    width: 80%;
+    margin-left: 10%;
+}
+.signup-form-button {
+    width: 100%;
+    margin-top: 15px;
+}
+
+.signup-form-button[disabled], .signup-form-button[disabled]:hover, .signup-form-button[disabled]:focus {
+    opacity: 0.6;
+    color: #fff;
+    background-color: #1890ff;
+    border-color: #1890ff;
+}
+
+.signup-form input {
+    margin-bottom: 3px;
+}
+
+.ant-btn.signup-form-button.ant-btn-primary.ant-btn-lg{
+    background-color: #00B1B6;
+    border-color: #00B1B6;
+    }
