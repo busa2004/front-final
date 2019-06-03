@@ -9,7 +9,6 @@ class Option2 extends Component {
                  title='보고서등록'>
                 <div className='edit'>
 
-                {console.log(this.props.currentUser)}
                 <TextEdit currentUser={this.props.currentUser} router={'report'} />
                 </div>
                 </Card>

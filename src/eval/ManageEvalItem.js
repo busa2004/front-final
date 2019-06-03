@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Card } from 'antd';
 import VersionSelect from './VersionSelect';
-import ItemTable from './ItemTable';
 import VersionAdd from './VersionAdd';
 import './ManageEvalItem.css';
+import SelectedItemTable from './SelectedItemTable';
 
 
 class ManageEvalItem extends Component {
@@ -18,20 +18,19 @@ class ManageEvalItem extends Component {
     }
 
     itemListCallback = (childItemList) => {
-        console.log(childItemList);
         childItemList.map((item) => {
-            item.itemNo = this.state.nCount++;
+            item.itemNo = this.state.nCount;
+            // item.key = this.state.nCount;
+            this.setState({
+                nCount: this.state.nCount + 1
+            });
         })
         this.setState({
             itemList: childItemList,
             nCount: 1
         });
+        // console.log(this.state.itemList);
     }
-
-    refresh = () => {
-        window.location.reload();
-    }
-
     setVersion = (childVersion) => {
         this.setState({
           version: childVersion
@@ -39,11 +38,9 @@ class ManageEvalItem extends Component {
     }
     
     changeItemList = (toggle) => {
-        console.log('h1');
-        // 최신 버전 가져오기
         this.setState({
             updateVersion: toggle
-        })
+        });
     }
     
     render() {
@@ -55,14 +52,15 @@ class ManageEvalItem extends Component {
                         disabled={false} 
                         setVersion={this.setVersion}
                         updateVersion={this.state.updateVersion}
-                        changeItemList={this.changeItemList} />
-                    <ItemTable 
+                        changeItemList={this.changeItemList}
+                         />
+                    <SelectedItemTable 
                         itemList={this.state.itemList}
-                        editable={false} />
+                         />
                     <VersionAdd 
-                        refresh={ this.refresh }
                         setVersion={this.setVersion}
-                        changeItemList={this.changeItemList}/>
+                        changeItemList={this.changeItemList}
+                       />
                 </Card>
             </div>
         );

@@ -53,10 +53,24 @@ class RankModal extends Component {
       option: selected,
     })
 
-    if(selected == '월간')      this.state.subSelected = ['1','2','3','4','5','6','7','8','9','10','11','12'];
-    else if(selected == '분기') this.state.subSelected = ['1분기', '2분기', '3분기', '4분기'];
-    else if(selected == '반기') this.state.subSelected = ['상반기', '하반기'];
-    else if(selected == '년')   this.state.subSelected = this.props.yearList;    
+    if(selected === '월간') {
+      this.setState({
+        subSelected: ['1','2','3','4','5','6','7','8','9','10','11','12']
+      });
+    } else if(selected === '분기') {
+      this.setState({
+        subSelected: ['1분기', '2분기', '3분기', '4분기']
+      });
+    } else if(selected === '반기') {
+      this.setState({
+        subSelected: ['상반기', '하반기']
+      });
+    }
+    else if(selected === '년') {
+      this.setState({
+        subSelected: this.props.yearList
+      });
+    } 
   }
 
   onSubChange = async (selected) => {
@@ -67,7 +81,7 @@ class RankModal extends Component {
 
   onClick = () => {
     // validation
-    if(this.state.year == "" || this.state.option == "" || this.state.subOption == "") {
+    if(this.state.year === "" || this.state.option === "" || this.state.subOption === "") {
       notification.success({
         message: 'Message',
         description: "검색조건을 선택해주세요"

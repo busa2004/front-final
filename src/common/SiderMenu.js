@@ -10,7 +10,7 @@ const SubMenu = Menu.SubMenu;
 
 class Sider extends React.Component {
   componentDidMount(){
-    if(this.props.currentUser == 'ROLE_ADMIN'){
+    if(this.props.currentUser === 'ROLE_ADMIN'){
       this.setState({
         menu:[
           <SubMenu key="sub2" title={<span><Icon type="appstore" /><span>관리자</span></span>}>

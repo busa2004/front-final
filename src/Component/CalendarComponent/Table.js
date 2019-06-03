@@ -20,7 +20,7 @@ const columns = [{
 }];
 
 function onChange(pagination, filters, sorter) {
-  console.log('params', pagination, filters, sorter);
+  //console.log('params', pagination, filters, sorter);
   
 }
 

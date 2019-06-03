@@ -51,7 +51,7 @@ class Option12 extends Component {
                 isLoading: false
                 
               });
-              console.log(this.state.profile)
+              // console.log(this.state.profile)
         }).catch(error => {
             if(error.status === 404) {
                 this.setState({
@@ -105,7 +105,7 @@ class Option12 extends Component {
         });
         if(this.state.userId != null){
         this.loadProfile(this.state.userId)}
-        console.log(this.state.data)
+        // console.log(this.state.data)
       });
     }
   

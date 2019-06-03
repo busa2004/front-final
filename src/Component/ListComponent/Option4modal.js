@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
-import { Modal, Button, Input } from 'antd';
-import { Row, Col, Slider, Card } from 'antd';
+import React from 'react';
+import { Modal, Button, Input, Row, Col, Card } from 'antd';
 import "./Option4modal.css"
+
 const { TextArea } = Input;
-const ButtonGroup = Button.Group;
 class Option4modal extends React.Component {
   constructor(props) {
     super(props);
@@ -15,7 +14,7 @@ class Option4modal extends React.Component {
       title: this.props.record.title,
       status: this.props.record.status
     }
-    console.log(this.props.record)
+    // console.log(this.props.record)
   }
 
   showModal = (e) => {
@@ -45,7 +44,7 @@ class Option4modal extends React.Component {
   }
 
   disabled = () => {
-    if (this.state.status == 'PROGRESS') {
+    if (this.state.status === 'PROGRESS') {
       return true;
     }
     return false;
@@ -78,18 +77,18 @@ class Option4modal extends React.Component {
           <Card className="no"
             title='반려사유'
           >
-          <TextArea rows={4} onChange={this.onChange} placeholder="반려 시 필수 입력" />
+            <TextArea rows={4} onChange={this.onChange} placeholder="반려 시 필수 입력" />
           </Card>
           <p></p>
 
           <Row type="flex" justify="end">
             <Col span={4} >
 
-                <Button style={{marginRight:"5px"}} type="primary" ghost disabled={this.disabled()} size='large' onClick={id => this.props.progress(this.state.id, 'PROGRESS', this.state.textArea,this.state.title)}>
-                  승인
+              <Button style={{ marginRight: "5px" }} type="primary" ghost disabled={this.disabled()} size='large' onClick={id => this.props.progress(this.state.id, 'PROGRESS', this.state.textArea, this.state.title)}>
+                승인
                 </Button>
-                <Button style={{marginRight:"5px"}} type="danger" ghost size='large' onClick={id => this.props.progress(this.state.id, 'HOLD', this.state.textArea,this.state.title)}>
-                  반려
+              <Button style={{ marginRight: "5px" }} type="danger" ghost size='large' onClick={id => this.props.progress(this.state.id, 'HOLD', this.state.textArea, this.state.title)}>
+                반려
                 </Button>
 
             </Col>

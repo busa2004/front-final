@@ -19,7 +19,7 @@ class AppHeader extends Component {
         this.props.onLogout();    //onLogout의 내용인 handleLogout 함수실행
       }
       if(key ==='profile'){
-        console.log('profile');
+      //  console.log('profile');
       }
     }
 

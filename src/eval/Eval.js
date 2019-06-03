@@ -43,8 +43,8 @@ class Eval extends Component {
       userTasks: null,
       isCompleted: false, 
       scores: [],
-      noCount: 1,
-      successEvalUserTaskId: 0
+      successEvalUserTaskId: 0,
+      nCount: 1
     }
   }
   getColumnSearchProps = (dataIndex) => ({
@@ -111,18 +111,22 @@ class Eval extends Component {
     // 팀장권한에서 전체 업무리스트보기
     getTask()
       .then(response => {
-        let orderBy = new Array();
+        let orderBy = [];
         let index = 0;
+
         response.map((item) => {
           orderBy.push(response[response.length - (++index)]);
         });
         orderBy.map((item) => {
-          item.taskNo =  this.state.noCount;
-          this.state.noCount = ++this.state.noCount;
+          item.taskNo =  this.state.nCount;
+          this.setState({
+            nCount: this.state.nCount+1
+          });
         });
         this.setState({
           evalDatas: orderBy,
-          isLoading: false
+          isLoading: false,
+          nCount: 1
         });
       }).catch(error => {
         if (error.status === 404) {
@@ -168,14 +172,20 @@ class Eval extends Component {
 
     getByTask(taskId)
       .then(response => {
+        response.map((item) => {
+          item.key = this.state.nCount;
+          this.setState({
+            nCount: this.state.nCount + 1
+          })
+        });
         this.setState({
           userTasks: response,
-          taskId: taskId
+          taskId: taskId,
+          nCount: this.state.nCount + 1
         });
 
-        // console.log(this.state.userTasks); // 업무리스트에서 평가버튼을 누르면 업무를 가진 사원리스트 뜬다
-
-        if(this.state.userTasks.length == 0) {
+        // 업무리스트에서 평가버튼을 누르면 업무를 가진 사원리스트 뜬다
+        if(this.state.userTasks.length === 0) {
           // 업무를 가진 사원이 없을때..
           notification.success({ // 옆에 표시 띄우기
             message: 'Message',
@@ -183,6 +193,7 @@ class Eval extends Component {
           })
          }
         this.setState({
+          nCount: 1,
           isLoading: false
         });
       })
@@ -217,7 +228,6 @@ class Eval extends Component {
   }
   
   changeButtonName = async (successEvalUserTaskId) => {
-    console.log(successEvalUserTaskId);
     await this.setState({
       successEvalUserTaskId: successEvalUserTaskId
     });
@@ -238,7 +248,7 @@ class Eval extends Component {
         const reportValue = {
           key: "보고서"
         }
-        if(response == 'NaN') {
+        if(response === 'NaN') {
           reportValue.value= "점수가 없습니다."
         } else {
           reportValue.value = response.toFixed(0);
@@ -249,25 +259,33 @@ class Eval extends Component {
         //console.log(this.state.report);
       })
       .catch(error => {
-        console.log(error);
+        // console.log(error);
     })
 
-    if(this.state.buttonName == '수정') {
+    if(this.state.buttonName === '수정') {
       await searchEval(taskId)
         .then(response => {
-          let itemListArr = new Array();
-          let scoreArr = new Array();
+          let itemListArr = [];
+          let scoreArr = [];
+
           response.map( (item) => {
             itemListArr.push(item.score.evalItem);
             scoreArr.push(item.score);
           });
+          itemListArr.map((item) => {
+            item.index = this.state.nCount;
+            this.setState({
+              nCount: this.state.nCount + 1 
+            });
+          });
           this.setState({
             itemList: itemListArr,
-            score: scoreArr
-          })
+            score: scoreArr,
+            nCount: 1
+          });
         })
         .catch(error => {
-          console.log(error);
+          // console.log(error);
         });
 
       this.state.itemList.map( (item) => {
@@ -275,47 +293,51 @@ class Eval extends Component {
           evalItem : item,
           score: 0
         }
-        if(item.content == '보고서') {
+        if(item.content === '보고서') {
           newData.score= this.state.report.value
-          if(newData.score == '점수가 없습니다.') newData.score= -1;          
+          if(newData.score === '점수가 없습니다.') newData.score= -1;          
         }
         this.setState({
           scores: [...this.state.scores, newData]
         });
       })
-    } else if (this.state.buttonName == '평가') {
+    } else if (this.state.buttonName === '평가') {
       // 최신 버전 가져와서 평가
       // 최신 버전 이름 가져오기
       await getAllEvalVersion()
         .then(response => {
-          console.log(response);
           this.setState({
             version: response[response.length-1]
           });
         })
         .catch(error => {
-          console.log(error)
+          // console.log(error)
         });      
       // 최신 버전이름으로 json 객체 가져오기
       await getVersionObj(this.state.version)
         .then(response => {
-          // console.log(response);
-          let arr = new Array();
+          let arr = [];
           response.map( (item) => {
             arr.push(item.evalItem);
-          })
+          });
+          arr.map((item) => {
+            item.index = this.state.nCount;
+            this.setState({
+              nCount: this.state.nCount +1
+            });
+          });
           this.setState({
             score: [],
             itemList: arr,
-            version: response
-          })
+            version: response,
+            nCount: 1
+          });
         })
         .catch(error => {
-          console.log(error)
+          // console.log(error)
         })
-      // console.log(this.state.itemList);
 
-      if(this.state.itemList == []) {
+      if(this.state.itemList === []) {
         // 평가항목이 없는경우
         notification.error({
           message: "Message",
@@ -328,9 +350,9 @@ class Eval extends Component {
             evalItem : item,
             score: 0
           }
-          if(item.content == '보고서') {
+          if(item.content === '보고서') {
             newData.score= this.state.report.value
-            if(newData.score == '점수가 없습니다.') newData.score= -1;          
+            if(newData.score === '점수가 없습니다.') newData.score= -1;          
           }
           this.setState({
             scores: [...this.state.scores, newData]
@@ -353,11 +375,6 @@ class Eval extends Component {
       scores: [],
     })
   }
-
-  refresh = () => {
-    //window.location.reload();
-  }
-
   render() {
     if (this.state.isLoading) {
       return <LoadingIndicator />;
@@ -398,7 +415,6 @@ class Eval extends Component {
             score={this.state.score} // 평가된 업무일 경우 점수를 input에 넣어서 세팅
             scores={this.state.scores} // 점수를 입력할 수 있게..
             itemList={this.state.itemList}
-            refresh={this.refresh}
             setNull={this.setNull}
           />
         </Card>

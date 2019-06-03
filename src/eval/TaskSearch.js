@@ -18,7 +18,7 @@ class TaskSearch extends Component {
   }
 
   onChange = (e) => {
-    console.log('radio checked', e.target.value);
+    // console.log('radio checked', e.target.value);
     this.setState({
       value: e.target.value,
     });
@@ -26,7 +26,7 @@ class TaskSearch extends Component {
 
   // select Report
   handleChange = (selectedReport) => {
-    console.log(selectedReport);
+    // console.log(selectedReport);
   }
 
   showModal = () => {
@@ -48,7 +48,7 @@ class TaskSearch extends Component {
   }
 
   search = (searchValue) => {
-    console.log(searchValue);
+    // console.log(searchValue);
     this.setState({
       visible:false
     });

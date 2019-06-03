@@ -1,7 +1,7 @@
 import { DatePicker } from 'antd';
 import React, { Component } from 'react';
 import moment from 'moment';
-const { MonthPicker, RangePicker, WeekPicker } = DatePicker;
+const { RangePicker, } = DatePicker;
 
 const dateFormat = 'YYYY-MM-DD';
 // function onChange(value, dateString) {

@@ -16,7 +16,7 @@ class VersionSelect extends Component {
       isLoading: false, // sync 여부
       version: "",
       versionObj: null,
-      versionList: new Array(), // Select에서 보여질 version List
+      versionList: [], // Select에서 보여질 version List
       itemList: null // 버전 선택시 테이블에 들어갈 평가 항목 리스트
     };
   }
@@ -30,7 +30,7 @@ class VersionSelect extends Component {
 
     getAllEvalVersion()
       .then(response => {
-        let array = new Array();
+        let array = [];
         response.map((date) => {
           array.push(date);
         });
@@ -55,7 +55,7 @@ class VersionSelect extends Component {
   }
 
   componentDidUpdate(props) {
-    if(props.updateVersion != this.props.updateVersion) {
+    if(props.updateVersion !== this.props.updateVersion) {
       this.loadVersion();
       this.props.changeItemList(false);
     }
@@ -63,8 +63,6 @@ class VersionSelect extends Component {
 
   // Select a version to get a list of items.
   handleChange = (selectedVersion) => {
-    console.log(`selected ${selectedVersion}`);
-
     // version Name으로 version JSON 가져오기
     getVersionObj(selectedVersion)
       .then(response => {

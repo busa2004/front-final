@@ -100,39 +100,39 @@ class ItemTable extends Component {
     }, {
       title: '내용',
       dataIndex: 'content',
-      editable: this.props.editable
-    }];
+      editable: true
 
+    }];
     this.state = {
       dataSource: this.props.dataSource,
       count: 2,
-      show: this.props.show, // modal=하단에 버튼 나타남,
       state: this.props.state, // 상태가 버전수정인지 평가하기인지..
       states: this.props.states
     };
-    console.log(this.state.states);
   }
   
   componentDidUpdate(prevProps){
     if (this.props.states !== prevProps.states) {
-          this.setState({
-                dataSource:[{ 
-                  key: 1,
-                  itemNo: 1,
-                  content: '평가항목을 입력해주세요.'}],
-                  count: 2,
-          })
+      this.setState({
+        dataSource:[{ 
+          key: 1,
+          itemNo: 1,
+          content: '평가항목을 입력해주세요.'}],
+          count: 2,
+      });
     }
 }
-  // render 후 props로부터 받는 값이 변동이 생겼을 때 state 값을 바꿔준다.
-  static getDerivedStateFromProps(nextProps, prevProps) {
-    if (nextProps.itemList !== prevProps.itemList) {
-        return {
-          dataSource: nextProps.itemList // dataSource가 table에서 값을 뿌리는 역할
-        };
-    }
-    return null;
-  }
+  // // render 후 props로부터 받는 값이 변동이 생겼을 때 state 값을 바꿔준다.
+  // static getDerivedStateFromProps(props, state) {
+  //   console.log(props); // props
+  //   console.log(state); // state
+  //   if (props.itemList !== state.itemList) {
+  //       return {
+  //         dataSource: props.itemList // dataSource가 table에서 값을 뿌리는 역할
+  //       };
+  //   }
+  //   return null;
+  // }
 
   handleAdd = () => {
     const { count, dataSource } = this.state;
@@ -147,13 +147,13 @@ class ItemTable extends Component {
     });
   }
 
-  componentWillMount() {
+  componentDidMount() {
     if(this.state.state === 'eval') {
       // console.log("here!");
       this.columns.concat({
         title: 'score',
         dataIndex: 'score',
-        editable: true        
+        editable: true,
       });
     }
   }
@@ -200,7 +200,6 @@ class ItemTable extends Component {
 
     return (
       <div>
-
         <Table
           components={components}
           rowClassName={() => 'editable-row'}
@@ -208,14 +207,11 @@ class ItemTable extends Component {
           dataSource={dataSource}
           columns={columns}
           pagination={false}
+          // rowKey='itemNo'
         />
-        {
-          this.state.show === 'modal' ? (
-            <div style={{ textAlign: "right", marginTop: 10 }}>
-              <Button onClick={this.handleAdd} type="primary" style={{ marginBottom: 16, }}> 항목 추가 </Button>
-            </div>
-          ) : null
-        }
+        <div style={{ textAlign: "right", marginTop: 10 }}>
+          <Button onClick={this.handleAdd} type="primary" style={{ marginBottom: 16, }}> 항목 추가 </Button>
+        </div>
       </div>
     );
   }

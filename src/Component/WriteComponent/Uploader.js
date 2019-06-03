@@ -21,7 +21,7 @@ import {API_BASE_URL} from '../../constants/index'
       },
       onChange(info) {
         if (info.file.status !== 'uploading') {
-          console.log(info.file, info.fileList);
+          // console.log(info.file, info.fileList);
         }
         if (info.file.status === 'done') {
           message.success(`${info.file.name} file uploaded successfully`);

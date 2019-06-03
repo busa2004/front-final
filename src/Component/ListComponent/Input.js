@@ -24,13 +24,13 @@ class OptionInput extends Component {
     this.onChange = this.onChange.bind(this);
 }
 onChange(date, dateString) {
-    console.log(date, dateString);
+    // console.log(date, dateString);
   }
 
 
 
     onChange = (e) => {
-        console.log('radio checked', e.target.value);
+        // console.log('radio checked', e.target.value);
         this.setState({
           value: e.target.value,
         });

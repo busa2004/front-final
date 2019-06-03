@@ -14,22 +14,14 @@ class VersionAdd extends Component {
         this.state = {
             visible: false,
             dataSource: null,
-            version: {
-                value: ''
-            },
+            version: { value: '' },
             states:"off",
             data:[{
                 key: 1,
                 itemNo: 1,
                 content: '평가항목을 입력해주세요.'
             }]
-
         }
-
-        this.handleOk = this.handleOk.bind(this);
-        this.handleCancel = this.handleCancel.bind(this);
-        this.handleInputChange = this.handleInputChange.bind(this);
-        this.showModal = this.showModal.bind(this);
     }
 
     // versionAdd
@@ -38,8 +30,6 @@ class VersionAdd extends Component {
             visible: true,
             states:"on",
         });
-        
-        console.log(this.state.states);
     }
 
     handleCancel = (e) => {
@@ -53,11 +43,8 @@ class VersionAdd extends Component {
             states:"off",
         });
         <Link to="/ManageEvalItem"/>
-        console.log(this.state.data);
     }
     dataSourceCallback = (childDataSource) => {
-        console.log(childDataSource);
-        
         this.setState({
             dataSource: childDataSource
         });
@@ -82,15 +69,14 @@ class VersionAdd extends Component {
         }
         await setEvalVersion(versionValue)
             .then(response => {
-                // console.log(response);
                 notification.success({ // 옆에 표시 띄우기
                     message: 'Message',
-                    description: "Successfully saved version! Automatically refreshes now!"
+                    description: "평가항목이 저장되었습니다."
                 })
             }).catch(error => {
                 notification.error({
                     message: 'Message',
-                    description: "Failed to save version.."
+                    description: "평가항목 저장을 실패하였습니다."
                 })
             });
         // ok됐을때 modal 초기화
@@ -117,11 +103,10 @@ class VersionAdd extends Component {
                     onOk={this.handleOk} 
                     onCancel={this.handleCancel}>
                     <ItemTable 
-                        show="modal" 
                         getDataSource={this.dataSourceCallback}
                         states={this.state.states}
                         dataSource={this.state.data}
-                        editable={true} />
+                        />
                     <div style={{ marginTop: "10px" }}>
                         <Form>
                             <FormItem>

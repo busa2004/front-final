@@ -39,7 +39,7 @@ class Option1Calendar extends Component {
                              listData.push({year: year, month: month+1, date: date, type: 'success', content: this.state.cal[i].title
                             ,key:  key}); 
                             key++;
-                            console.log('--'+key)
+                            //console.log('--'+key)
                               break;
                               default:
                             }
@@ -53,7 +53,7 @@ class Option1Calendar extends Component {
                          listData.push({endyear: endyear, endmonth: endmonth+1, enddate: enddate, type: 'error', content: this.state.cal[i].title+'마감'
                         ,key:key });
                         key++; 
-                        console.log('--'+key)
+                        //console.log('--'+key)
                          break;
                        default:
                       }

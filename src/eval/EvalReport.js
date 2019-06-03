@@ -28,7 +28,6 @@ class EvalReport extends Component {
     this.state.value.to = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + (d.getDate() + 1);
     this.load = this.load.bind(this);
     this.loadDelete = this.loadDelete.bind(this);
-    console.log('--------------' + this.props.text)
   }
 
   load() {
@@ -36,7 +35,7 @@ class EvalReport extends Component {
       isLoading: true,
     });
 
-    console.log(this.state.value);
+    // console.log(this.state.value);
     //여기부터
     //getAllTask구현
     //column과 data 수정
@@ -46,7 +45,7 @@ class EvalReport extends Component {
           datas: response,
           isLoading: false
         });
-        console.log(this.state.datas);
+        // console.log(this.state.datas);
       }).catch(error => {
         if (error.status === 404) {
           this.setState({
@@ -90,7 +89,7 @@ class EvalReport extends Component {
   }
 
   ModalLoad(state) {
-    console.log(state)
+    // console.log(state)
     this.setState({
       isLoading: true,
     });

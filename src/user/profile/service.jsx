@@ -3,7 +3,7 @@ import {API_BASE_URL} from '../../constants/index'
 class Service {
 
   constructor() {
-    console.log("Service is constructed");
+   // console.log("Service is constructed");
   }
 
   getRestClient() {

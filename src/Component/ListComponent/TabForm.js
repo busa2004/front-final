@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import TableForm from './Table';
-import { Tabs, Icon } from 'antd';
-
+import { Tabs } from 'antd';
 
 const TabPane = Tabs.TabPane;
 
 function callback(key) {
-  console.log(key);
+  // console.log(key);
 }
 
 class TabForm extends Component {
@@ -20,7 +19,6 @@ class TabForm extends Component {
             progressArray:[],
             columns:this.props.columns
         }
-        console.log(';llllllllllllllllllllll' + this.state.columns)
     }
 
     //5.16 업무 칼럼 추가 taskTitle
@@ -45,11 +43,11 @@ class TabForm extends Component {
         let progressArray = [];
      
         for(let i = 0 ;  i < this.state.length; i++){
-            if (this.state.reports[i].status == 'PROGRESS') {
+            if (this.state.reports[i].status === 'PROGRESS') {
                 progressArray.push(this.pushProperty(i));
-            }else if(this.state.reports[i].status == 'WAIT'){
+            }else if(this.state.reports[i].status === 'WAIT'){
                 waitArray.push(this.pushProperty(i));
-            }else if(this.state.reports[i].status == 'HOLD'){
+            }else if(this.state.reports[i].status === 'HOLD'){
                 holdArray.push(this.pushProperty(i));
             }
             

@@ -20,7 +20,7 @@ class App extends React.Component {
   }
 
   render() {
-      console.log(this.state.num);
+      // console.log(this.state.num);
     return (
       <div>
         <div style={{textAlign:"center",marginTop:"15px"}}>

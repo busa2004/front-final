@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import './App.css';
 import {
   Route,
@@ -107,19 +107,14 @@ class App extends Component {
       sider = []
     } else {
       sider = [
-        <Sider className="app-Sider" ><SiderMenu
+        <Sider className="app-Sider" key="sider" ><SiderMenu
           currentUser={this.state.currentUser.authorities[0].authority}
         /></Sider>
-
-
       ];
-      console.log(this.state.currentUser)
     }
-
-
-
-    if (this.state.currentUser != null && this.state.currentUser.authorities[0].authority == 'ROLE_ADMIN') {
-      admin = [<div>
+    
+    if (this.state.currentUser !== null && this.state.currentUser.authorities[0].authority === 'ROLE_ADMIN') {  
+      admin = [<div key="admin">
         {/* 업무보고현황 */}
         <PrivateRoute authenticated={this.state.isAuthenticated} path="/Option4" handleLogout={this.handleLogout}
           component={(props) => <Option4 isAuthenticated={this.state.isAuthenticated} currentUser={this.state.currentUser} {...props} />}></PrivateRoute>
@@ -181,7 +176,7 @@ class App extends Component {
                 render={(props) => <Login onLogin={this.handleLogin} {...props} />}></Route>:
               ''
             } 
-
+              <Fragment>
               <div className="center">
                 <div className="main" >
 
@@ -202,8 +197,9 @@ class App extends Component {
                       component={(props) => <Option3 isAuthenticated={this.state.isAuthenticated} currentUser={this.state.currentUser} {...props} />}></PrivateRoute>
 
                     {/* 관리자 메뉴 */}
+                    <Fragment>
                     {admin}
-
+                    </Fragment>
                     {/* <Route path="/Option1" 
                 render={(props) => <Option1 isAuthenticated={this.state.isAuthenticated} currentUser={this.state.currentUser} {...props}  />}></Route> */}
 
@@ -211,6 +207,7 @@ class App extends Component {
                   </Switch>
                 </div>
               </div>
+              </Fragment>
             </Switch>
           </Layout>
           <Footer style={{ textAlign: 'center' }}>

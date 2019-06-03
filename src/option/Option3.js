@@ -1,19 +1,16 @@
 import React, { Component } from 'react';
 import { getReport,deleteReport,modifyReport,getUserTaskDate } from '../util/APIUtils';
+import { Row, Col, Card, Popconfirm, Input,Button  } from 'antd';
 import  DatePickers from '../Component/ListComponent/DatePickers';
 import  SerachForm from '../Component/ListComponent/SearchForm';
 import  TabForm from '../Component/ListComponent/TabForm';
-import { Row, Col } from 'antd';
 import LoadingIndicator from '../common/LoadingIndicator';
 import ServerError from '../common/ServerError';
 import NotFound from '../common/NotFound';
-import moment from 'moment';
-import {Card} from 'antd';
 import Selecter from '../Component/WriteComponent/selecter'
-import { Popconfirm, Input,Button } from 'antd';
+
 const InputGroup = Input.Group;
 class Option3 extends Component {
-
     constructor(props) {
         super(props);
         var d = new Date();
@@ -108,13 +105,13 @@ class Option3 extends Component {
       });
       getReport(data)
       .then(response => {
-        console.log('ss')
+        // console.log('ss')
           this.setState({
             reports: response,
           
             });
             this.loadUserTask()
-            console.log(this.state.reports)
+            // console.log(this.state.reports)
       }).catch(error => {
           if(error.status === 404) {
               this.setState({
@@ -159,7 +156,7 @@ class Option3 extends Component {
         userTaskId: value
     })
     this.loadReport({search:this.state.search,from:this.state.from,to:this.state.to,taskId:value})
-    console.log(`selected ${value}`);
+    // console.log(`selected ${value}`);
 }
     componentWillMount() {
      
@@ -191,12 +188,12 @@ class Option3 extends Component {
         })
        let body={search:data,from:this.state.from,to:this.state.to,taskId:this.state.userTaskId}
         this.loadReport(body);
-        console.log(data)
+        // console.log(data)
     }
     dateSearch= (dateSearch) => {
 
         
-         console.log(dateSearch[0],dateSearch[1])
+         // console.log(dateSearch[0],dateSearch[1])
          this.setState({
             from:dateSearch[0],
             to:dateSearch[1],
@@ -209,7 +206,7 @@ class Option3 extends Component {
         // });
     }
     render () {
-        console.log(this.state.isLoading)
+        // console.log(this.state.isLoading)
         if(this.state.isLoading) {
             return <LoadingIndicator />;
           }
@@ -221,7 +218,7 @@ class Option3 extends Component {
           if(this.state.serverError) {
             return <ServerError />;
           }
-          console.log(this.state.reports);
+          // console.log(this.state.reports);
           
      
         

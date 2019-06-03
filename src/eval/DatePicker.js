@@ -20,7 +20,7 @@ class DatePicker extends Component {
   dateSearch = (dateSearch) => {
     this.state.value.from = dateSearch[0];
     this.state.value.to = dateSearch[1];
-    console.log(this.state.value); 
+    // console.log(this.state.value); 
   }
 
 

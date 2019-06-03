@@ -36,8 +36,7 @@ class EmpList extends Component {
     }
   }
 
-  evalModal = (userTask) => { 
-    // console.log(userTask); // 평가할 사원 업무 // userTasks랑 다름
+  evalModal = (userTask) => {  // 평가할 사원 업무 // userTasks랑 다름
     this.props.evalModal(userTask);
   }
 

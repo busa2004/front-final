@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import Report from '../Component/ListComponent/Report';
-import {
-    Table, Input, Button, Icon,
-  } from 'antd';
-  import Highlighter from 'react-highlight-words';
-  import {Card} from 'antd';
+import { Input, Button, Icon, Card } from 'antd';
+import Highlighter from 'react-highlight-words';
   
 
 class Option6 extends Component {
@@ -27,7 +24,7 @@ class Option6 extends Component {
                
                 ...this.getColumnSearchProps('content'),
                 render: (text, row, index) => {
-                  console.log(text,row,index)
+                  // console.log(text,row,index)
                   return  <div dangerouslySetInnerHTML={ {__html: text} }></div>
                 }
               },{

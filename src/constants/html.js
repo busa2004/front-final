@@ -49,7 +49,7 @@ export function html() {
      "<td width='680' class='xl67' style='background: rgb(255, 255, 255); border: 0.75pt solid windowtext; border-image: none; width: 510pt; text-align: center; font-size: 9pt; font-weight: 700; white-space: normal;' colspan='2'></td>"+
     "</tr>"+
     "</tbody></table></div><p><br></p>"
-    console.log(a.byteLength());
+    // console.log(a.byteLength());
     return a;
 };
 export function html2() {
@@ -104,7 +104,7 @@ export function html2() {
          "<td width='680' class='xl67' style='background: rgb(255, 255, 255); border: 0.75pt solid windowtext; border-image: none; width: 510pt; text-align: center; font-size: 9pt; font-weight: 700; white-space: normal;' colspan='2'></td>"+
         "</tr>"+
         "</tbody></table></div><p><br></p>"
-        console.log(a.byteLength());
+        // console.log(a.byteLength());
         return a
 };
 
@@ -200,7 +200,7 @@ export function html3() {
      "<td width='680' class='xl67' style='background: rgb(255, 255, 255); border: 0.75pt solid windowtext; border-image: none; width: 510pt; text-align: center; font-size: 9pt; font-weight: 700; white-space: normal;' colspan='4'></td>"+
     "</tr>"+
     "</tbody></table></div><p><br></p>"
-        console.log(a.byteLength());
+        // console.log(a.byteLength());
         return a
 };
 
@@ -210,9 +210,9 @@ String.prototype.byteLength = function() {
     for(var idx=0; idx < this.length; idx++) {
         var c = escape(this.charAt(idx));
          
-        if( c.length==1 ) l ++;
-        else if( c.indexOf("%u")!=-1 ) l += 2;
-        else if( c.indexOf("%")!=-1 ) l += c.length/3;
+        if( c.length===1 ) l ++;
+        else if( c.indexOf("%u")!==-1 ) l += 2;
+        else if( c.indexOf("%")!==-1 ) l += c.length/3;
     }
      
     return l;

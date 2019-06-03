@@ -1,22 +1,17 @@
 import React, { Component } from 'react';
-import {
-    Button
-} from 'antd';
-import Selecter from '../WriteComponent/selecter'
-import 'jodit';
-import 'jodit/build/jodit.min.css';
-import JoditEditor from "jodit-react";
+import { Button, message, Input, Select } from 'antd';
 import { createTask, createReport, getUserTaskDate } from '../../util/APIUtils';
+import { html, html2, html3 } from '../../constants/html';
+import {send} from '../ListComponent/Message';
+import Selecter from '../WriteComponent/selecter'
+import JoditEditor from "jodit-react";
 import LoadingIndicator from '../../common/LoadingIndicator';
 import ServerError from '../../common/ServerError';
 import NotFound from '../../common/NotFound';
 import Uploader from './Uploader'
-import { message } from 'antd';
-import {
-    Input, Select,Icon,Upload
-} from 'antd';
-import { html, html2, html3 } from '../../constants/html';
-import {send} from '../ListComponent/Message';
+import 'jodit';
+import 'jodit/build/jodit.min.css';
+
 const Option = Select.Option;
 const InputGroup = Input.Group;
 const error = (value) => {
@@ -47,7 +42,7 @@ class TextEdit extends Component {
         this.setState({
             isLoading: true
         });
-        if (this.state.router == 'task') {
+        if (this.state.router === 'task') {
             createTask(task)
                 .then(response => {
                     this.setState({
@@ -68,7 +63,7 @@ class TextEdit extends Component {
                         });
                     }
                 });
-        } else if (this.state.router == 'report') {
+        } else if (this.state.router === 'report') {
             createReport(task)
                 .then(response => {
                     this.setState({
@@ -119,21 +114,21 @@ class TextEdit extends Component {
         this.setState({
             userTaskId: value
         })
-        console.log(`selected ${value}`);
+        // console.log(`selected ${value}`);
     }
     componentWillMount() {
-        if (this.state.router == 'report') {
+        if (this.state.router === 'report') {
             this.loadUserTask()
         }
     };
 
 
     onClick() {
-        if (this.state.content == '') {
+        if (this.state.content === '') {
             error('내용을 입력해야 합니다.');
-        }else if(this.state.title == ''){
+        }else if(this.state.title === ''){
             error('제목을 입력해야 합니다.');
-        }else if(this.state.router == 'report'&&this.state.userTaskId==null){
+        }else if(this.state.router === 'report'&&this.state.userTaskId==null){
             error('업무를 선택해야 합니다.');
         }else {
             const task = { content: '', title: '' };
@@ -141,13 +136,13 @@ class TextEdit extends Component {
             task.content = this.state.content;
             task.title = this.state.title;
 
-            if (this.state.router == 'report') {
+            if (this.state.router === 'report') {
                 task.fileName = this.state.fileName;
                 task.userTaskId = this.state.userTaskId;
             }
-            console.log(this.props.currentUser)
+            // console.log(this.props.currentUser)
             this.loadCreateTask(task);
-            if (this.state.router == 'report') {
+            if (this.state.router === 'report') {
             send(this.props.currentUser.name+' 이'+
             this.state.title+'를 작성하였습니다.\n'+'http://localhost:3000/Option4',
             'xoxp-589802289765-587062052432-637522247233-ecdfb5f0a09821fa899e7556d06c2a0d',
@@ -184,7 +179,7 @@ class TextEdit extends Component {
 
     onUpload=(value)=>{
         var fileNameArr = value.map((num)=>num.name);
-        console.log(fileNameArr)
+        // console.log(fileNameArr)
         this.setState({
             fileName:fileNameArr
         })
@@ -205,7 +200,7 @@ class TextEdit extends Component {
         return (
             <div>
 
-                {this.state.router == 'report' ?
+                {this.state.router === 'report' ?
                     <div className="information" >
                         <InputGroup compact>
                         <Input value="업무" style={{width:"20%",pointerEvents:"none"}} />
@@ -235,7 +230,7 @@ class TextEdit extends Component {
                     onChange={this.updateContent}
                 />
                 <p></p>
-                {this.state.router == 'report' ?
+                {this.state.router === 'report' ?
                 <Uploader onUpload={this.onUpload}/>:''}
                 <div className='submit'>
                     <Button onClick={this.onClick}>등록하기</Button>

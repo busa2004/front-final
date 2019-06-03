@@ -1,4 +1,3 @@
-    
 import React, { Component } from 'react';
 import LoadingIndicator from '../common/LoadingIndicator';
 import NotFound from '../common/NotFound';
@@ -15,13 +14,13 @@ class ModalInput extends Component {
   }
   
   componentWillMount() {
-    if(this.state.score.length == 0) {
+    if(this.state.score.length === 0) {
       this.setState({
         score: ""
       })
     } else if(this.state.score.length != 0) {
       this.state.score.map((item) => {
-        if(this.state.record.itemNo == item.evalItem.itemNo) {
+        if(this.state.record.itemNo === item.evalItem.itemNo) {
           this.setState({
             score: item.score
           });

@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import Report from '../Component/ListComponent/Report';
-import {
-    Table, Input, Button, Icon,
-  } from 'antd';
-  import Highlighter from 'react-highlight-words';
-  import {Card} from 'antd';
+import { Input, Button, Icon, Card } from 'antd';
+import Highlighter from 'react-highlight-words';
+
 class Option5 extends Component {
     constructor(props) {
         super(props);

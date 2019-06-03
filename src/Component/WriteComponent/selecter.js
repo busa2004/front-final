@@ -10,19 +10,19 @@ class Selecter extends Component {
       userTask: this.props.userTask,
       userTaskId : this.props.userTaskId
     };
-    console.log(this.state.userTask)
-    console.log(this.state.userTaskId)
+    // console.log(this.state.userTask)
+    // console.log(this.state.userTaskId)
   };
   
 
   onBlur = () =>{
-    console.log('blur');
+    // console.log('blur');
   }
   onFocus = () => {
-    console.log('focus');
+    // console.log('focus');
   }
   onSearch = (val) => {
-    console.log('search:', val);
+    // console.log('search:', val);
   }
 
 
@@ -34,7 +34,7 @@ class Selecter extends Component {
         style={{  width:"80%" }}
         placeholder={this.state.userTaskId==null?
           '업무선택':this.state.userTask.map((contact, i) => {
-            console.log(contact,this.state.userTaskId)
+            // console.log(contact,this.state.userTaskId)
           if(this.state.userTaskId == contact.id){
           return (contact.title);
           }

@@ -4,10 +4,8 @@ import NotFound from '../common/NotFound';
 import ServerError from '../common/ServerError';
 import { Button } from 'antd/lib/radio';
 import { searchEval } from '../util/APIUtils';
-import {
-  Link,
-  withRouter
-} from 'react-router-dom';
+import {  withRouter } from 'react-router-dom';
+
 class EmpButton extends Component {
   constructor(props) {
     super(props);
@@ -34,7 +32,7 @@ class EmpButton extends Component {
         }
       })
       .catch(error => {
-        console.log(error);
+        // console.log(error);
       });
 
     this.setState({
@@ -67,8 +65,6 @@ class EmpButton extends Component {
   }
 
   componentDidUpdate(prevProps){
-    console.log(prevProps);
-    console.log(this.state.record);
     if(prevProps.successEvalUserTaskId != this.props.successEvalUserTaskId) {
       // 레코드 번호 따서 그부분만 수정으로 만들기
       if(this.state.record.id == this.props.successEvalUserTaskId) {

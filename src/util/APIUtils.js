@@ -177,7 +177,7 @@ export function getAllTaskNoSearch() {
 }
 
 export function getReport(data) {
-    console.log(data)
+    // console.log(data)
     return request({
         url: API_BASE_URL + "/report/all",
         method: 'POST',
@@ -319,7 +319,7 @@ export function deleteReport(id) {
     });
 }
 export function r(body) {
-    console.log(body)
+    // console.log(body)
 }
 export function getRestClient(body) {
 
@@ -344,8 +344,6 @@ export function getByTask(taskId) {
 
 //////////////// sh
 export function setEvalVersion(versionValue) {
-    console.log(versionValue);
-    
     return request({
         url: API_BASE_URL + '/eval/createVersion',
         method: 'POST',
@@ -455,7 +453,7 @@ export function quarterNHalfRank(param) {
 class Service {
 
   constructor() {
-    console.log("Service is constructed");
+    // console.log("Service is constructed");
   }
 
   getRestClient = () =>{

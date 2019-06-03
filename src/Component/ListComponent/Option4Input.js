@@ -17,7 +17,7 @@ class Option4Input extends Component {
             }
 
     onChange = (e) => {
-        console.log('radio checked', e.target.value);
+        // ('radio checked', e.target.value);
         this.setState({
           value: e.target.value,
         });

@@ -3,12 +3,7 @@ import Option1Calendar from '../Component/CalendarComponent/Calendar';
 import { getUserTask,getUserCalendar } from '../util/APIUtils';
 import { keyChange } from '../Component/ListComponent/Message';
 import LoadingIndicator from '../common/LoadingIndicator';
-import {Card,Button,Input} from 'antd';
-
-
-
-
-
+import { Card } from 'antd';
 
 //send('ssssssssss');
 class Option1 extends Component {
@@ -95,7 +90,7 @@ class Option1 extends Component {
             roomTitle: e.target.value
         });
        
-        console.log(e.target.value)
+        // console.log(e.target.value)
     }
   
     render () {

@@ -1,7 +1,6 @@
-import { Table, Divider, Tag } from 'antd';
+import { Table } from 'antd';
 import React, { Component } from 'react';
 import ModalTest from './ModalTest';
-import { Popconfirm, message,Button } from 'antd';
 
 class DatePickers extends Component {
 
@@ -49,21 +48,16 @@ class DatePickers extends Component {
             <ModalTest hold={this.props.hold} data={row} modify={this.props.modify} modifyConfirm={this.props.modifyConfirm} />          
            ),
         }],
-        
-        
     }
-    console.log(';;;;;;;;;;;;;;;;;;;;;;;;' +this.props.columns)
-    if(this.props.columns != undefined){
+    if(this.props.columns !== undefined){
         this.state.columns = this.state.columns.concat(this.props.columns)
     }
-   
 }
 
   render() {
-
-    return (<div>
-     
-      <Table columns={this.state.columns} dataSource={this.state.reports} />
+    return (
+      <div>
+        <Table columns={this.state.columns} dataSource={this.state.reports} />
       </div>
     );
   }

@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import { getUserProfile } from '../../util/APIUtils';
-import { Input, Tabs, Card, Col, Row } from 'antd';
+import { Card, Col, Row } from 'antd';
 import { formatDate } from '../../util/Helpers';
 import LoadingIndicator from '../../common/LoadingIndicator';
 import './Profile.css';
 import NotFound from '../../common/NotFound';
 import ServerError from '../../common/ServerError';
-import PasswordChange from './PasswordChange';
 import { FileUploader } from './fileUploader.jsx';
 import SlackConnect from './SlackConnect.js';
-const TabPane = Tabs.TabPane;
 
 class Profile extends Component {
     constructor(props) {
@@ -20,7 +18,6 @@ class Profile extends Component {
             username: null
         }
         this.loadUserProfile = this.loadUserProfile.bind(this);
-   
     }
 
 
