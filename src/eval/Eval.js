@@ -116,12 +116,14 @@ class Eval extends Component {
 
         response.map((item) => {
           orderBy.push(response[response.length - (++index)]);
+          return null;
         });
         orderBy.map((item) => {
           item.taskNo =  this.state.nCount;
           this.setState({
             nCount: this.state.nCount+1
           });
+          return null;
         });
         this.setState({
           evalDatas: orderBy,
@@ -176,7 +178,8 @@ class Eval extends Component {
           item.key = this.state.nCount;
           this.setState({
             nCount: this.state.nCount + 1
-          })
+          });
+          return null;
         });
         this.setState({
           userTasks: response,
@@ -271,12 +274,14 @@ class Eval extends Component {
           response.map( (item) => {
             itemListArr.push(item.score.evalItem);
             scoreArr.push(item.score);
+            return null;
           });
           itemListArr.map((item) => {
             item.index = this.state.nCount;
             this.setState({
               nCount: this.state.nCount + 1 
             });
+            return null;
           });
           this.setState({
             itemList: itemListArr,
@@ -300,6 +305,7 @@ class Eval extends Component {
         this.setState({
           scores: [...this.state.scores, newData]
         });
+        return null;
       })
     } else if (this.state.buttonName === '평가') {
       // 최신 버전 가져와서 평가
@@ -319,12 +325,14 @@ class Eval extends Component {
           let arr = [];
           response.map( (item) => {
             arr.push(item.evalItem);
+            return null;
           });
           arr.map((item) => {
             item.index = this.state.nCount;
             this.setState({
               nCount: this.state.nCount +1
             });
+            return null;
           });
           this.setState({
             score: [],
@@ -356,7 +364,8 @@ class Eval extends Component {
           }
           this.setState({
             scores: [...this.state.scores, newData]
-          })
+          });
+          return null;
         });
       }      
     }

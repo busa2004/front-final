@@ -24,7 +24,8 @@ class ManageEvalItem extends Component {
             this.setState({
                 nCount: this.state.nCount + 1
             });
-        })
+            return null;
+        });
         this.setState({
             itemList: childItemList,
             nCount: 1

@@ -33,6 +33,7 @@ class VersionSelect extends Component {
         let array = [];
         response.map((date) => {
           array.push(date);
+          return null;
         });
         this.setState({
           isLoading: false,

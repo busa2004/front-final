@@ -18,13 +18,14 @@ class ModalInput extends Component {
       this.setState({
         score: ""
       })
-    } else if(this.state.score.length != 0) {
+    } else if(this.state.score.length !== 0) {
       this.state.score.map((item) => {
         if(this.state.record.itemNo === item.evalItem.itemNo) {
           this.setState({
             score: item.score
           });
         }
+        return null;
       });
     }
     

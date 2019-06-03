@@ -1,6 +1,7 @@
 import React from 'react';
 import { Modal, Button, Input, Row, Col, Card } from 'antd';
 import "./Option4modal.css"
+import { API_BASE_URL } from '../../constants/index'
 
 const { TextArea } = Input;
 class Option4modal extends React.Component {
@@ -12,7 +13,8 @@ class Option4modal extends React.Component {
       textArea: '',
       content: this.props.record.content,
       title: this.props.record.title,
-      status: this.props.record.status
+      status: this.props.record.status,
+      fileName: this.props.record.fileName
     }
     // console.log(this.props.record)
   }
@@ -49,7 +51,16 @@ class Option4modal extends React.Component {
     }
     return false;
   }
+ 
+  componentWillMount() {
+    if (this.state.fileName != null) {
+        this.setState({
+            fileName: this.state.fileName.split(";")
+        });
 
+    }
+    // console.log(this.state.fileName)
+}
   render() {
 
 
@@ -73,6 +84,16 @@ class Option4modal extends React.Component {
               <div dangerouslySetInnerHTML={{ __html: this.state.content }}></div>
             </Row>
           </Card>
+         <p></p>
+         
+         <Card
+          title="파일"
+          >
+          {(this.state.fileName === '') || (this.state.fileName === null) ? '' :
+              this.state.fileName.map((fileName,key) =>
+                                <Button key={key} href={API_BASE_URL + "/report/downloadFile/" + fileName}>{fileName}</Button>
+                            )}
+                    </Card>
           <p></p>
           <Card className="no"
             title='반려사유'

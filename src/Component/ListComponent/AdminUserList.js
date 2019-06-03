@@ -71,7 +71,7 @@ class AdminUserList extends Component {
               <List.Item key={item.id}>
                 <List.Item.Meta
                   avatar={item.profile==null?<Avatar icon="user" size={80} />:<Avatar icon="user" size={80} src={BASE_URL+"test/"+item.profile} />}
-                  title={<a href="https://ant.design">{item.name}</a>}
+                  title={<a>{item.name}</a>}
                   description={item.email}
                 />
                 

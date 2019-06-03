@@ -4,17 +4,24 @@ import { changePassword } from '../../util/APIUtils';
 import LoadingIndicator from '../../common/LoadingIndicator';
 import NotFound from '../../common/NotFound';
 import ServerError from '../../common/ServerError';
-
+import { message } from 'antd';
 class RegistrationForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       confirmDirty: false,
       autoCompleteResult: [],
-      id: this.props.id
+      id: this.props.id,
+      isLoading: false,
     };
     this.load = this.load.bind(this);
   };
+  success = () => {
+    message.success('변경 사항이 저장되었습니다.');
+  }
+  error = () => {
+    message.error('비밀번호가 옳지 않습니다.');
+  }
   load(values) {
     this.setState({
       isLoading: true
@@ -25,7 +32,11 @@ class RegistrationForm extends React.Component {
           ok: response,
           isLoading: false
         });
-        this.success();
+        if(this.state.ok.status === 'ok'){
+          this.success();
+         }else{
+           this.error();
+         }
         // console.log(this.state.ok)
       }).catch(error => {
         if (error.status === 404) {

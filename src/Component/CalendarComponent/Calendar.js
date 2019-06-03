@@ -82,7 +82,7 @@ class Option1Calendar extends Component {
   
    getMonthData(value) {
     if (value.month() === 8) {
-      return '8월';
+      return '';
     }
   }
   

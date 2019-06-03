@@ -24,10 +24,10 @@ class EmpButton extends Component {
     // eval 테이블에서 user_task가 있는지 확인
     await searchEval(taskId)
       .then(response => {
-        if (response.length != 0) {
+        if (response.length !== 0) {
           // 평가완료
           this.state.buttonName = "수정"
-        } else if (response.length == 0) {
+        } else if (response.length === 0) {
           this.state.buttonName = "평가"
         }
       })
@@ -65,9 +65,9 @@ class EmpButton extends Component {
   }
 
   componentDidUpdate(prevProps){
-    if(prevProps.successEvalUserTaskId != this.props.successEvalUserTaskId) {
+    if(prevProps.successEvalUserTaskId !== this.props.successEvalUserTaskId) {
       // 레코드 번호 따서 그부분만 수정으로 만들기
-      if(this.state.record.id == this.props.successEvalUserTaskId) {
+      if(this.state.record.id === this.props.successEvalUserTaskId) {
         this.setState({
           successEvalUserTaskId: this.props.successEvalUserTaskId,
           buttonName: "수정"

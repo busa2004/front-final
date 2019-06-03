@@ -17,6 +17,9 @@ const columns = [{
   title: '내용',
   dataIndex: 'content',
   width: '40%',
+  render: (text) => {
+    return  <div dangerouslySetInnerHTML={ {__html: text} }></div>
+  }
 }];
 
 function onChange(pagination, filters, sorter) {

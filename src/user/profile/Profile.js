@@ -8,7 +8,7 @@ import NotFound from '../../common/NotFound';
 import ServerError from '../../common/ServerError';
 import { FileUploader } from './fileUploader.jsx';
 import SlackConnect from './SlackConnect.js';
-
+import PasswordChange from './PasswordChange';
 class Profile extends Component {
     constructor(props) {
         super(props);
@@ -111,7 +111,11 @@ class Profile extends Component {
                                            <SlackConnect/>
                                         </Card>
                                     </Col>
-                                   
+                                    <Col span={12}>
+                                        <Card title="비밀번호 변경">
+                                           <PasswordChange id={this.state.user.id}/>
+                                        </Card>
+                                    </Col>
                                 </Row>
                                 
                             </div>

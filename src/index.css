@@ -69,3 +69,6 @@ text-align: right;
 body::-webkit-scrollbar { 
   display: none; 
 }
+.anticon.anticon-close-circle.ant-calendar-picker-clear{
+  display: none;
+}

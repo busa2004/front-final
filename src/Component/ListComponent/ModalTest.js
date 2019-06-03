@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import { Modal, Button, Row, Card } from 'antd';
+import { Modal, Button, Row, Card,Input } from 'antd';
 import 'jodit';
 import 'jodit/build/jodit.min.css';
 import JoditEditor from "jodit-react";
@@ -17,10 +17,12 @@ class TabForm extends Component {
             description: this.props.data.description,
             modify: this.props.modify,
             id: this.props.data.id,
-            fileName: this.props.data.fileName
+            fileName: this.props.data.fileName,
+            blank:''
         }
     }
     componentWillMount() {
+       
         if (this.state.fileName != null) {
             this.setState({
                 fileName: this.state.fileName.split(";")
@@ -62,6 +64,7 @@ class TabForm extends Component {
         readonly: false // all options from https://xdsoft.net/jodit/doc/
     }
     modify = () => {
+        
         if (this.props.modify === true) {
             return <div>
                 <JoditEditor
@@ -72,7 +75,7 @@ class TabForm extends Component {
                 />
                 <p></p>
                 <Row type="flex" justify="end">
-                    <Button onClick={a => this.props.modifyConfirm(this.state.content, this.state.id)}>수정</Button>
+                    <Button onClick={a => this.props.modifyConfirm(this.state.content, this.state.id,this.state.title)}>수정</Button>
                 </Row>
                 <p></p>
             </div>
@@ -91,7 +94,30 @@ class TabForm extends Component {
             </div>
         }
     }
-
+    file(){
+        
+        
+        if(this.props.route !== 'task'){
+            return <Card
+            title="파일"
+        >
+            {(this.state.fileName.toString() === '') || (this.state.fileName === null) ? '' :
+                this.state.fileName.map((fileName,key) =>
+                    <Button key={key} href={API_BASE_URL + "/report/downloadFile/" + fileName}>{fileName}</Button>
+                )}
+        </Card>
+        }
+    }
+    onChange = (e) => {
+        this.setState({
+            [e.target.title]: e.target.value
+        });
+    }
+    taskTitle(){
+        if(this.props.route === 'task'){
+            return <Input title={'title'} value={this.state.title} style={{ width: '60%' }} placeholder="제목" onChange={this.onChange} />
+        }
+    }
     render() {
         // console.log(this.state.fileName)
         return (
@@ -111,7 +137,7 @@ class TabForm extends Component {
                         title={this.state.title}
                     >
                         <Row type="flex" justify="center">
-
+                            {this.taskTitle()}
 
                             {this.modify()}
                         </Row>
@@ -120,15 +146,7 @@ class TabForm extends Component {
 
                     {this.holdDescription()}
                     <p></p>
-                    <Card
-                        title="파일"
-                    >
-                        {(this.state.fileName === '') || (this.state.fileName === null) ? '' :
-
-                            this.state.fileName.map(fileName =>
-                                <Button key="file" href={API_BASE_URL + "/report/downloadFile/" + fileName}>{fileName}</Button>
-                            )}
-                    </Card>
+                    {this.file()}
                 </Modal>
 
             </div>);

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Report from '../Component/ListComponent/Report';
-import { Input, Button, Icon, Card } from 'antd';
+import { Input, Button, Icon, Card , Popconfirm} from 'antd';
 import Highlighter from 'react-highlight-words';
   
 
@@ -10,13 +10,14 @@ class Option6 extends Component {
         this.state = {
             searchText: '',
             columns : [{
+                width:"30%",
                 align: "center",
                 title: '제목',
                 dataIndex: 'title',
                 key: 'title',
-                ...this.getColumnSearchProps('title')
-              
+                ...this.getColumnSearchProps('title')   
               }, {
+                width:"45%",
                 align: "center",
                 title: '내용',
                 dataIndex: 'content',
@@ -28,6 +29,7 @@ class Option6 extends Component {
                   return  <div dangerouslySetInnerHTML={ {__html: text} }></div>
                 }
               },{
+                width:"15%",
                 align: "center",
                 title: '날짜',
                 dataIndex: 'createdAt',
@@ -38,11 +40,14 @@ class Option6 extends Component {
                   return <div>{date.getFullYear()+"-"+
                               (date.getMonth()+1)+"-"+
                               date.getDate()}</div>
-                }
-              }]
+                },
+              }
+              
+            ]
         }
       
     }
+
     
     getColumnSearchProps = (dataIndex) => ({
         filterDropdown: ({

@@ -20,7 +20,6 @@ class SelectList extends Component {
     this.state = {
       tasks: this.props.tasks,
       columns: this.props.columns,
-      content: '',
       createArr: [],
       deleteArr: [],
       length: 0,
@@ -31,14 +30,11 @@ class SelectList extends Component {
       branch: null,
       buttonnum: 1,
       columns: [{
+        align: 'center',
         title: '제목',
         dataIndex: 'title',
         key: 'title',
         render: text => <a href="javascript:;">{text}</a>,
-      }, {
-        title: '내용',
-        dataIndex: 'content',
-        key: 'content',
       }]
     }
 

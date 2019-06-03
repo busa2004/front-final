@@ -144,12 +144,14 @@ class EvalRank extends Component {
         let index = 0;
         response.map((item) => {
           orderBy.push(response[response.length - (++index)]);
+          return null;
         });
         orderBy.map((item) => {
           item.taskNo =  this.state.noCount;
           this.setState({
             noCount: this.state.noCount + 1
-          })
+          });
+          return null;
         });
         this.setState({
           evalDatas: orderBy,
@@ -200,7 +202,8 @@ class EvalRank extends Component {
       taskId: [],
     }
     this.state.userList.map( (item) => {
-      tmpTaskId.taskId.push(item.id)
+      tmpTaskId.taskId.push(item.id);
+      return null;
     });
 
     let existUserTask = [];
@@ -356,21 +359,29 @@ class EvalRank extends Component {
     this.state.tmpResponse.map( (item) => {
       this.state.userList.map( (userListItem) => {
         if(item.userTaskId === userListItem.id) {
-          const rank = {};
           if(item.score !== 'NaN') {
+            const rank = {};
             rank.rank = rankCount;
             rank.taskId = userListItem.id;
             rank.userId = userListItem.user.id;
             rank.userName = userListItem.user.name;
             rank.score= (item.score).toFixed(2);
             rankCount++;
-          }               
-          list.push(rank);
-          // console.log(list);
+            list.push(rank);
+          }
         }
+        return null;
       });
+      return null;
     });
-    
+
+    if(list.length === 0) { 
+      notification.error({ // 옆에 표시 띄우기
+        message: 'Message',
+        description: "검색조건에 해당되는 데이터가 없습니다."
+      });
+    }
+
     this.setState({
       rankList: list,
       isLoading: false

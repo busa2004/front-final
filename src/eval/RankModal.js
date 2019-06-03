@@ -132,6 +132,7 @@ class RankModal extends Component {
           <Table
             dataSource={this.props.rankList}
             columns={this.state.columns}
+            rowKey="rank"
             />
         </Modal>
       </div>

@@ -37,6 +37,7 @@ class EvalModal extends Component {
       if(item.score < -1 || item.score > 100) {
         scoreRange = true
       }
+      return null;
     });
 
     // validation
@@ -102,6 +103,7 @@ class EvalModal extends Component {
       if(record.itemNo === item.evalItem.itemNo) {
         this.state.scores[key].score = Number(inputValue);
       }
+      return null;
     });
   }
   

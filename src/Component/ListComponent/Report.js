@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Option4table from '../ListComponent/Option4table';
 import { message } from 'antd';
 import "./Report.css"
-import { getAllReport, getAllTask, ReportConverter, getAllTaskNoSearch } from '../../util/APIUtils';
+import { getAllReport, getAllTask, ReportConverter, getAllTaskNoSearch,modifyTask } from '../../util/APIUtils';
 import Option4DatePick from '../ListComponent/Option4DatePicker';
 import Option4Search from '../ListComponent/Option4Search';
 import Option4modal from '../ListComponent/Option4modal';
@@ -10,8 +10,8 @@ import LoadingIndicator from '../../common/LoadingIndicator';
 import ServerError from '../../common/ServerError';
 import NotFound from '../../common/NotFound';
 import Selecter from '../WriteComponent/selecter';
+import ModalTest from './ModalTest';
 import { sendUser } from './Message';
-
 class Report extends Component {
   constructor(props) {
     super(props);
@@ -79,6 +79,8 @@ class Report extends Component {
       //여기부터
       //getAllTask구현
       //column과 data 수정
+      this.state.value.from=null;
+      this.state.value.to=null;
       getAllTask(this.state.value)
         .then(response => {
           this.setState({
@@ -86,7 +88,7 @@ class Report extends Component {
             isLoading: false
 
           });
-          // console.log(this.state.datas);
+           console.log(this.state.datas);
         }).catch(error => {
           if (error.status === 404) {
             this.setState({
@@ -176,7 +178,36 @@ class Report extends Component {
       });
   }
 
+  modifyConfirm=(content,id,title)=>{
+    this.loadModify(content,id,title)
 
+ }
+ loadModify(content,id,title) {
+  this.setState({
+      isLoading: true
+  });
+
+  modifyTask(content,id,title)
+  .then(response => {
+      this.setState({
+        ok: response,
+        
+        });
+        this.load();
+  }).catch(error => {
+      if(error.status === 404) {
+          this.setState({
+              notFound: true,
+              isLoading: false
+          });
+      } else {
+          this.setState({
+              serverError: true,
+              isLoading: false
+          });        
+      }
+  });        
+}
   componentWillMount() {
     // console.log(this.props.currentUser)
 
@@ -198,8 +229,15 @@ class Report extends Component {
       });
     } else {
       this.setState({
-        columns: this.props.columns
-      })
+        columns: this.props.columns.concat({
+          align: 'center',
+          title: 'action',
+          key: 'id',
+          render: (text, row, index) => (
+            <ModalTest route={'task'} hold={false} data={row} modify={true} modifyConfirm={this.modifyConfirm} />          
+           ),
+        }),
+      });
     }
     this.load();
 
@@ -230,10 +268,11 @@ class Report extends Component {
     return (
       <div className="Option4">
         <div className='header'>
-          <Option4DatePick
+          
+        {this.state.route === 'report' ?   <Option4DatePick
             to={this.state.value.to} from={this.state.value.from}
             dateSearch={this.dateSearch} />
-
+            : null}
 
           {this.state.route === 'report' ? <Selecter onUserTaskChange={this.onUserTaskChange} userTask={this.state.userTask} userTaskId={this.state.taskId} />
             : null}

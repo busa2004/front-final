@@ -274,7 +274,15 @@ export function modifyReport(content,id) {
         
     });
 }
-
+export function modifyTask(content,id,title) {
+    let modify = {content:content, id:id,title:title}
+    return request({
+        url: API_BASE_URL + '/task/modify',
+        method: 'POST',
+        body: JSON.stringify(modify)    
+        
+    });
+}
 
 export function getAllTask(body) {
 

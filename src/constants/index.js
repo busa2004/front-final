@@ -1,6 +1,5 @@
-//export const API_BASE_URL = 'http://218.39.221.101:8080/df/api';
-//export const BASE_URL = 'http://218.39.221.101:8080/df/';
 export const BASE_URL = 'http://116.93.227.39:8080/df/';
+//export const BASE_URL = 'http://218.39.221.79:8080/';
 // export const BASE_URL = 'http://localhost:8080/';
 export const API_BASE_URL = BASE_URL+'api';
 
