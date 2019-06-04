@@ -61,7 +61,8 @@ class TabForm extends Component {
     setRef = jodit => this.jodit = jodit;
 
     config = {
-        readonly: false // all options from https://xdsoft.net/jodit/doc/
+        readonly: false, // all options from https://xdsoft.net/jodit/doc/
+        maxWidth: '100%'
     }
     modify = () => {
         
