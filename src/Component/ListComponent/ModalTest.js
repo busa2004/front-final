@@ -5,7 +5,7 @@ import 'jodit';
 import 'jodit/build/jodit.min.css';
 import JoditEditor from "jodit-react";
 import { API_BASE_URL } from '../../constants/index'
-
+const InputGroup = Input.Group;
 class TabForm extends Component {
     constructor(props) {
         super(props);
@@ -62,18 +62,21 @@ class TabForm extends Component {
 
     config = {
         readonly: false, // all options from https://xdsoft.net/jodit/doc/
-        maxWidth: '100%'
+        maxWidth: '100%',
+        height:'500px'
     }
     modify = () => {
         
         if (this.props.modify === true) {
             return <div>
+                <div style={{width:"700px"}}>
                 <JoditEditor
                     editorRef={this.setRef}
                     value={this.state.content}
                     config={this.config}
                     onChange={this.updateContent}
                 />
+                </div>
                 <p></p>
                 <Row type="flex" justify="end">
                     <Button onClick={a => this.props.modifyConfirm(this.state.content, this.state.id,this.state.title)}>수정</Button>
@@ -116,7 +119,11 @@ class TabForm extends Component {
     }
     taskTitle(){
         if(this.props.route === 'task'){
-            return <Input title={'title'} value={this.state.title} style={{ width: '60%' }} placeholder="제목" onChange={this.onChange} />
+            return  <InputGroup compact style={{marginBottom:"10px",width:'700px'}}>
+            <Input  style={{ width: '20%',pointerEvents:"none" }} value="제목"/>
+            <Input title={'title'} value={this.state.title} style={{ width: '80%' }} placeholder="제목" onChange={this.onChange} />
+            </InputGroup>
+          
         }
     }
     render() {

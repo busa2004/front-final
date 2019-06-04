@@ -15,7 +15,8 @@ class Option1 extends Component {
             isLoading: true,
             cal:[],
             key:null,
-            date: new Date()
+            date: new Date(),
+            nCount: 1
         }
         this.loadUserTask = this.loadUserTask.bind(this);
         this.loadUserCalendar = this.loadUserCalendar.bind(this);
@@ -55,12 +56,18 @@ class Option1 extends Component {
             isLoading: true
         });
         getUserCalendar(this.props.currentUser.username)
-        .then(response => {
+        .then(response => {         
+            response.map((item) => {
+                item.key = this.state.nCount;
+                this.setState({
+                    nCount: this.state.nCount + 1
+                });
+            });
             this.setState({
                 cal: response,
+                nCount: 1,
                 isLoading: false
             });
-          
         }).catch(error => {
             if(error.status === 404) {
                 this.setState({

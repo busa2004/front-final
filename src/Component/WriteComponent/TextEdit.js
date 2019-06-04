@@ -175,7 +175,7 @@ class TextEdit extends Component {
         readonly: false, // all options from https://xdsoft.net/jodit/doc/
         width: '100%',
         height:'500px',
-        maxWidth: '100%'
+       
     }
 
     onUpload=(value)=>{
