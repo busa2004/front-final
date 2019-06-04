@@ -144,7 +144,7 @@ class TextEdit extends Component {
             this.loadCreateTask(task);
             if (this.state.router === 'report') {
             send(this.props.currentUser.name+' 이'+
-            this.state.title+'를 작성하였습니다.\n'+'http://localhost:3000/Option4',
+            this.state.title+'를 작성하였습니다.\n http://localhost:3000/Option4',
             'xoxp-589802289765-587062052432-637522247233-ecdfb5f0a09821fa899e7556d06c2a0d',
             '관리자')
             }

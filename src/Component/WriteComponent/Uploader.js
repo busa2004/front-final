@@ -17,7 +17,7 @@ import {API_BASE_URL} from '../../constants/index'
       action: API_BASE_URL+'/report/uploadFile',
       headers: {
         authorization: 'authorization-text',
-        "Accept-Charset":'UTF-8'
+       
       },
       onChange(info) {
         if (info.file.status !== 'uploading') {

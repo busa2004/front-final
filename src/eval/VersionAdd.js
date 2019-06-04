@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Input, Form, Modal, notification, Button } from 'antd';
 import FormItem from 'antd/lib/form/FormItem';
 import {
-    Link,
+    
     withRouter
 } from 'react-router-dom';
 import ItemTable from './ItemTable';
@@ -42,7 +42,7 @@ class VersionAdd extends Component {
             dataSource: [],
             states:"off",
         });
-        <Link to="/ManageEvalItem"/>
+        
     }
     dataSourceCallback = (childDataSource) => {
         this.setState({
@@ -89,7 +89,7 @@ class VersionAdd extends Component {
             states:"off",
         });
         this.props.changeItemList(true);
-        <Link to="/ManageEvalItem"/>
+       
     }
     render() {
         return (

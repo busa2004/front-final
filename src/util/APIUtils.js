@@ -460,9 +460,7 @@ export function quarterNHalfRank(param) {
 
 class Service {
 
-  constructor() {
-    // console.log("Service is constructed");
-  }
+  
 
   getRestClient = () =>{
 

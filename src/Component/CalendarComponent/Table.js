@@ -40,7 +40,7 @@ class Option1Table extends Component {
      // console.log(this.props.time.format('YYYY-MM-DD'));
       //console.log(moment(this.props.data[0].createdAt).format('YYYY-MM-DD'));
       const datas = this.props.data;
-      const size = 3;
+      //const size = 3;
       for(let i=0;i<this.state.cnt;i++){
       this.state.data.pop();
       }

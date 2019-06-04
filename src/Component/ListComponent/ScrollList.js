@@ -1,12 +1,12 @@
 import {
-  List, message, Avatar, Spin,
+  List, Avatar, Spin,
 } from 'antd';
 import reqwest from 'reqwest';
 import React, { Component } from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
 import './ScrollList.css';
 import { Input } from 'antd';
-import { Modal, Button } from 'antd';
+import {  Button } from 'antd';
 import {BASE_URL, API_BASE_URL} from '../../constants/index'
 const Search = Input.Search;
 const fakeDataUrl = API_BASE_URL+'/user/all';
@@ -96,7 +96,7 @@ class InfiniteListExample extends Component {
    }
    handleLoadMore(page) { /* load more items here */ }
   render() {
-      const size = this.state.size;
+      //const size = this.state.size;
     return (
       <div>
       <div>        

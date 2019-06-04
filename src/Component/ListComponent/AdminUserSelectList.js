@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { profileModify, checkUsernameAvailability, checkEmailAvailability } from '../../util/APIUtils';
-import {Card } from 'antd';
+import {  checkUsernameAvailability, checkEmailAvailability } from '../../util/APIUtils';
 import { 
     NAME_MIN_LENGTH, NAME_MAX_LENGTH, 
     USERNAME_MIN_LENGTH, USERNAME_MAX_LENGTH,
@@ -8,7 +7,7 @@ import {
     PASSWORD_MIN_LENGTH, PASSWORD_MAX_LENGTH
 } from '../../constants';
 
-import { Form, Input, Button, notification } from 'antd';
+import { Form, Input, Button } from 'antd';
 const FormItem = Form.Item;
 
 class AdminUserSelectList extends Component {
@@ -79,7 +78,8 @@ class AdminUserSelectList extends Component {
     }
 
     modify(){
-      if(this.state.modifypassword==true){
+        
+      if(this.state.modifypassword===true){
       this.setState({
         modifypassword : false
       })

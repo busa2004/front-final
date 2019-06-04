@@ -35,9 +35,10 @@ class Selecter extends Component {
         placeholder={this.state.userTaskId==null?
           '업무선택':this.state.userTask.map((contact, i) => {
             // console.log(contact,this.state.userTaskId)
-          if(this.state.userTaskId == contact.id){
+          if(this.state.userTaskId === contact.id){
           return (contact.title);
           }
+          return null;
         })}
         optionFilterProp="children"
         onChange={value => this.props.onUserTaskChange(value)}

@@ -89,7 +89,7 @@ class Option4modal extends React.Component {
          <Card
           title="파일"
           >
-          {(this.state.fileName === '') || (this.state.fileName === null) ? '' :
+          {(this.state.fileName.toString() === '') || (this.state.fileName === null) ? '' :
               this.state.fileName.map((fileName,key) =>
                                 <Button key={key} href={API_BASE_URL + "/report/downloadFile/" + fileName}>{fileName}</Button>
                             )}

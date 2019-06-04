@@ -17,7 +17,7 @@ import {
       action: API_BASE_URL+'/files',
       headers: {
         authorization: 'authorization-text',
-        "Accept-Charset":'UTF-8'
+      
       },
       onChange(info) {
         if (info.file.status !== 'uploading') {

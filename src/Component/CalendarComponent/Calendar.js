@@ -40,11 +40,13 @@ class Option1Calendar extends Component {
                             ,key:  key}); 
                             key++;
                             //console.log('--'+key)
-                              break;
-                              default:
+                            break;
+                            default:
                             }
+                    break;
                     default:
                   }
+            
              case endyear :
                 switch(value.month()){
                    case endmonth:
@@ -54,11 +56,13 @@ class Option1Calendar extends Component {
                         ,key:key });
                         key++; 
                         //console.log('--'+key)
-                         break;
+                        break;
                        default:
                       }
+                      break;  
                    default:
                 }
+               break;
            default:
       }
 }

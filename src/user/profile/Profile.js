@@ -77,9 +77,9 @@ class Profile extends Component {
             return <ServerError />;
         }
 
-        const tabBarStyle = {
-            textAlign: 'center'
-        };
+        // const tabBarStyle = {
+        //     textAlign: 'center'
+        // };
 
         return (
             <div className="profile">

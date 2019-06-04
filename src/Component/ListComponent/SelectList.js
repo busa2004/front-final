@@ -19,7 +19,7 @@ class SelectList extends Component {
     super(props);
     this.state = {
       tasks: this.props.tasks,
-      columns: this.props.columns,
+    
       createArr: [],
       deleteArr: [],
       length: 0,
@@ -34,7 +34,7 @@ class SelectList extends Component {
         title: '제목',
         dataIndex: 'title',
         key: 'title',
-        render: text => <a href="javascript:;">{text}</a>,
+        render: text => <div>{text}</div>,
       }]
     }
 

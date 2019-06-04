@@ -27,7 +27,7 @@ class Option12 extends Component {
     }
 
     clickButton = (data,search) => {
-        let userId={userId:data}
+        //let userId={userId:data}
         this.loadProfile(data)
         this.setState({
             userId:data,

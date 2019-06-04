@@ -69,7 +69,7 @@ class TabForm extends Component {
         
         if (this.props.modify === true) {
             return <div>
-                <div style={{width:"700px"}}>
+                <div style={{width:"730px"}}>
                 <JoditEditor
                     editorRef={this.setRef}
                     value={this.state.content}
@@ -119,7 +119,7 @@ class TabForm extends Component {
     }
     taskTitle(){
         if(this.props.route === 'task'){
-            return  <InputGroup compact style={{marginBottom:"10px",width:'700px'}}>
+            return  <InputGroup compact style={{marginBottom:"10px",width:'730px'}}>
             <Input  style={{ width: '20%',pointerEvents:"none" }} value="제목"/>
             <Input title={'title'} value={this.state.title} style={{ width: '80%' }} placeholder="제목" onChange={this.onChange} />
             </InputGroup>

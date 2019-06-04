@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Report from '../Component/ListComponent/Report';
-import { Input, Button, Icon, Card , Popconfirm} from 'antd';
+import { Input, Button, Icon, Card } from 'antd';
 import Highlighter from 'react-highlight-words';
   
 

@@ -126,8 +126,11 @@ class EvalModal extends Component {
             }           
           }
       }),
-      isLoading: false
+      
     });
+    this.setState({
+      isLoading: false
+    })
   }
 
   setVersion = (childVersion) => {

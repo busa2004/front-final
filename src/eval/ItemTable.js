@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table, Input, Button, Popconfirm, Form } from 'antd';
+import { Table, Input, Button, Form } from 'antd';
 import "./ItemTable.css"
 
 const FormItem = Form.Item;

@@ -1,11 +1,11 @@
 import {
-  List, message, Avatar, Spin,
+  List, Avatar, Spin,
 } from 'antd';
 import React, { Component } from 'react';
 import InfiniteScroll from 'react-infinite-scroller';
 import './ScrollList.css';
 import { Input, Button  } from 'antd';
-import {BASE_URL, API_BASE_URL} from '../../constants/index'
+import {BASE_URL} from '../../constants/index'
 const Search = Input.Search;
 
 class AdminUserList extends Component {
@@ -44,7 +44,7 @@ class AdminUserList extends Component {
    handleLoadMore(page) { /* load more items here */ }
 
   render() {
-      const size = this.state.size;
+      //const size = this.state.size;
     return (
       <div>
       <div>    
