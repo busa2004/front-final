@@ -29,6 +29,9 @@ import PrivateRoute from '../common/PrivateRoute';
 import Eval from '../eval/Eval';
 import ManageEvalItem from '../eval/ManageEvalItem';
 import { Layout, notification } from 'antd';
+import ignoreWarnings from 'ignore-warnings';
+ignoreWarnings('src');
+
 const { Sider, Content, Footer } = Layout;
 
 class App extends Component {
@@ -98,6 +101,7 @@ class App extends Component {
   }
 
   render() {
+    console.disableYellowBox = true;
     if (this.state.isLoading) {
       return <LoadingIndicator />
     }

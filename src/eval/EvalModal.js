@@ -10,6 +10,7 @@ class EvalModal extends Component {
   constructor(props) {
       super(props);
       this.state = {
+        
         columns: [{
           align: "center",
           title: '번호',
@@ -101,7 +102,9 @@ class EvalModal extends Component {
 
     this.props.scores.map( (item, key) => {
       if(record.itemNo === item.evalItem.itemNo) {
+        
         this.state.scores[key].score = Number(inputValue);
+       
       }
       return null;
     });
