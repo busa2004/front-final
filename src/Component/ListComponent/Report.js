@@ -87,7 +87,7 @@ class Report extends Component {
             datas: response,
             isLoading: false
 
-          });
+           });
            console.log(this.state.datas);
         }).catch(error => {
           if (error.status === 404) {
@@ -234,7 +234,7 @@ class Report extends Component {
           title: 'action',
           key: 'id',
           render: (text, row, index) => (
-            <ModalTest route={'task'} hold={false} data={row} modify={true} modifyConfirm={this.modifyConfirm} />          
+            <ModalTest modalTitle={'수정'} route={'task'} hold={false} data={row} modify={true} modifyConfirm={this.modifyConfirm} />          
            ),
         }),
       });

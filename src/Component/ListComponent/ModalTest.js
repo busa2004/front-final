@@ -124,10 +124,10 @@ class TabForm extends Component {
             <div>
 
                 <Button onClick={this.showModal}>
-                    보고서 보기
+                    {this.props.modalTitle}
                 </Button>
                 <Modal
-                    title={'보고서 보기'}
+                    title={this.props.modalTitle}
                     visible={this.state.visible}
                     onOk={this.handleOk}
                     onCancel={this.handleCancel}

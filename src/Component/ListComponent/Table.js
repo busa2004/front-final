@@ -45,7 +45,7 @@ class DatePickers extends Component {
           key: 'description',
           dataIndex: 'description',
           render: (text, row, index) => (
-            <ModalTest hold={this.props.hold} data={row} modify={this.props.modify} modifyConfirm={this.props.modifyConfirm} />          
+            <ModalTest modalTitle={'보고서 보기'} hold={this.props.hold} data={row} modify={this.props.modify} modifyConfirm={this.props.modifyConfirm} />          
            ),
         }],
     }
