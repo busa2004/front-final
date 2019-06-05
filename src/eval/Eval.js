@@ -401,7 +401,8 @@ class Eval extends Component {
         <Card title='평가하기' headStyle={{backgroundColor:"#00B1B6",color:"#FBFBFB",fontWeight:"bold"}}>
           <Table
             dataSource={this.state.evalDatas}
-            columns={this.state.columns} />
+            columns={this.state.columns}
+            pagination={{ defaultPageSize: 4 }} />
           <br /> <br />
 
           <EmpList

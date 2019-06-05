@@ -75,7 +75,7 @@ class App extends Component {
     this.loadCurrentUser();
   }
 
-  handleLogout(redirectTo = "/", notificationType = "success", description = "수고하셨습니다.") {
+  handleLogout(redirectTo = "/login", notificationType = "success", description = "수고하셨습니다.") {
     localStorage.removeItem(ACCESS_TOKEN);
 
     this.setState({
@@ -97,7 +97,7 @@ class App extends Component {
       description: "반갑습니다.",
     });
     this.loadCurrentUser();
-    this.props.history.push("/Option1");
+    this.props.history.push("/");
   }
 
   render() {
@@ -119,6 +119,9 @@ class App extends Component {
     
     if (this.state.currentUser !== null && this.state.currentUser.authorities[0].authority === 'ROLE_ADMIN') {  
       admin = [<div key="admin">
+         <PrivateRoute authenticated={this.state.isAuthenticated} exact path="/" handleLogout={this.handleLogout}
+                      component={(props) => <Option4 isAuthenticated={this.state.isAuthenticated} currentUser={this.state.currentUser} {...props} />}></PrivateRoute>
+                   
         {/* 업무보고현황 */}
         <PrivateRoute authenticated={this.state.isAuthenticated} path="/Option4" handleLogout={this.handleLogout}
           component={(props) => <Option4 isAuthenticated={this.state.isAuthenticated} currentUser={this.state.currentUser} {...props} />}></PrivateRoute>
@@ -158,6 +161,20 @@ class App extends Component {
           component={(props) => <ManageEvalItem isAuthenticated={this.state.isAuthenticated} currentUser={this.state.currentUser} {...props} />}></PrivateRoute>
 
       </div>]
+    }else if(this.state.currentUser !== null && this.state.currentUser.authorities[0].authority === 'ROLE_USER'){
+      admin = [<div>
+         <PrivateRoute authenticated={this.state.isAuthenticated} exact path="/" handleLogout={this.handleLogout}
+                      component={(props) => <Option1 isAuthenticated={this.state.isAuthenticated} currentUser={this.state.currentUser} {...props} />}></PrivateRoute>
+                   
+        <PrivateRoute authenticated={this.state.isAuthenticated} path="/Option1" handleLogout={this.handleLogout}
+        component={(props) => <Option1 isAuthenticated={this.state.isAuthenticated} currentUser={this.state.currentUser} {...props} />}></PrivateRoute>
+      <PrivateRoute authenticated={this.state.isAuthenticated} path="/Option2" handleLogout={this.handleLogout}
+        component={(props) => <Option2 isAuthenticated={this.state.isAuthenticated} currentUser={this.state.currentUser} {...props} />}></PrivateRoute>
+
+      <PrivateRoute authenticated={this.state.isAuthenticated} path="/Option3" handleLogout={this.handleLogout}
+        component={(props) => <Option3 isAuthenticated={this.state.isAuthenticated} currentUser={this.state.currentUser} {...props} />}></PrivateRoute>
+      </div>
+      ];
     }
 
     return (
@@ -180,27 +197,25 @@ class App extends Component {
                 render={(props) => <Login onLogin={this.handleLogin} {...props} />}></Route>:
               ''
             } 
+             {this.state.currentUser == null?
+              <Route path="/"
+                render={(props) => <Login onLogin={this.handleLogin} {...props} />}></Route>:
+              ''
+            } 
               <Fragment>
               <div className="center">
                 <div className="main" >
 
                   <Switch>
 
-                    <PrivateRoute authenticated={this.state.isAuthenticated} exact path="/" handleLogout={this.handleLogout}
-                      component={(props) => <Option1 isAuthenticated={this.state.isAuthenticated} currentUser={this.state.currentUser} {...props} />}></PrivateRoute>
+                   
+                   
+                   
+
+                    {/* 관리자 메뉴 */}
                     <Route path="/users/:username"
                       render={(props) => <Profile isAuthenticated={this.state.isAuthenticated} currentUser={this.state.currentUser} {...props} />}>
                     </Route>
-                   
-                    <PrivateRoute authenticated={this.state.isAuthenticated} path="/Option1" handleLogout={this.handleLogout}
-                      component={(props) => <Option1 isAuthenticated={this.state.isAuthenticated} currentUser={this.state.currentUser} {...props} />}></PrivateRoute>
-                    <PrivateRoute authenticated={this.state.isAuthenticated} path="/Option2" handleLogout={this.handleLogout}
-                      component={(props) => <Option2 isAuthenticated={this.state.isAuthenticated} currentUser={this.state.currentUser} {...props} />}></PrivateRoute>
-                    {/* 내가 올린 보고서 보기 */}
-                    <PrivateRoute authenticated={this.state.isAuthenticated} path="/Option3" handleLogout={this.handleLogout}
-                      component={(props) => <Option3 isAuthenticated={this.state.isAuthenticated} currentUser={this.state.currentUser} {...props} />}></PrivateRoute>
-
-                    {/* 관리자 메뉴 */}
                     <Fragment>
                     {admin}
                     </Fragment>

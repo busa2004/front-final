@@ -410,7 +410,8 @@ class EvalRank extends Component {
         <Card title="평가 순위" headStyle={{backgroundColor:"#00B1B6",color:"#FBFBFB",fontWeight:"bold"}}>
           <Table
             dataSource={this.state.evalDatas}
-            columns={this.state.columns} />
+            columns={this.state.columns}
+            pagination={{ defaultPageSize: 4 }} />
           <RankModal
             rankList={this.state.rankList}
             visible={this.state.visible}

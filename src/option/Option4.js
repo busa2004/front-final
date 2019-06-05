@@ -9,19 +9,19 @@ class Option4 extends Component {
         this.state = {
             searchText: '',
             columns : [{
+              align: "center",
+              title: '업무',
+              dataIndex: 'taskTitle',
+              key: 'taskTitle',
+              ...this.getColumnSearchProps('taskTitle')
+            },{
                 align: "center",
                 title: '제목',
                 dataIndex: 'title',
                 key: 'title',
                 ...this.getColumnSearchProps('title')
               
-              },  {
-                align: "center",
-                title: '업무',
-                dataIndex: 'taskTitle',
-                key: 'taskTitle',
-                ...this.getColumnSearchProps('taskTitle')
-              },  {
+              },    {
                 align: "center",
                 title: '이름',
                 dataIndex: 'userName',
@@ -38,9 +38,8 @@ class Option4 extends Component {
                 return <div>{date.getFullYear()+"-"+
                         (date.getMonth()+1)+"-"+
                         date.getDate()}<br/>{
-                        date.getHours()+":"+
-                        date.getMinutes()+":"+
-                        date.getSeconds()
+                        date.getHours()+"시 "+
+                        date.getMinutes()+"분"
                          }</div>
                 }
                 

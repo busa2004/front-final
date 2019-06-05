@@ -13,7 +13,7 @@ class Option4table extends Component {
     }
   }
   render() {
-    return <Table columns={this.state.columns} dataSource={this.state.data} />;
+    return <Table columns={this.state.columns} dataSource={this.state.data} pagination={{ defaultPageSize: 4 }} />;
   }
 }
 

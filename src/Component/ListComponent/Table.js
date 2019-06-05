@@ -9,13 +9,41 @@ class DatePickers extends Component {
     super(props);
     this.state = {
         reports: this.props.reports,
-        columns : [{
+        columns : [
+          {
+            //5.16 업무 칼럼 추가 taskTitle
+            width:"30%",
+            align:'center',
+            title: '업무이름',
+            dataIndex: 'taskTitle',
+            key: 'taskTitle',
+            ...this.getColumnSearchProps('taskTitle'),
+          } ,{
+            width:"30%",
           align:'center',
           title: '제목',
           dataIndex: 'title',
           key: 'title',
           ...this.getColumnSearchProps('title')
+        },{
+          width:"9%",
+          align:'center',
+          title: '상태',
+          dataIndex: 'status',
+          key: 'status',
+          ...this.getColumnSearchProps('status'),
+         
+        } , {
+          align:'center',
+          title: '보고서 보기',
+          key: 'description',
+          dataIndex: 'description',
+         
+          render: (text, row, index) => (
+            <ModalTest modalTitle={'보고서 보기'} hold={this.props.hold} data={row} modify={this.props.modify} modifyConfirm={this.props.modifyConfirm} />          
+           ),
         }, {
+          width:"18%",
           align:'center',
           title: '작성일자',
           dataIndex: 'date',
@@ -26,34 +54,10 @@ class DatePickers extends Component {
             return <div>{date.getFullYear()+"-"+
                         (date.getMonth()+1)+"-"+
                         date.getDate()}<br/>{
-                        date.getHours()+":"+
-                        date.getMinutes()+":"+
-                        date.getSeconds()
+                        date.getHours()+"시 "+
+                        date.getMinutes()+"분"
                          }</div>
           }
-        },{
-          align:'center',
-          title: '상태',
-          dataIndex: 'status',
-          key: 'status',
-          ...this.getColumnSearchProps('status'),
-         
-        } , {
-          //5.16 업무 칼럼 추가 taskTitle
-          align:'center',
-          title: '업무',
-          dataIndex: 'taskTitle',
-          key: 'taskTitle',
-          ...this.getColumnSearchProps('taskTitle'),
-        } ,{
-          align:'center',
-          title: '보고서 보기',
-          key: 'description',
-          dataIndex: 'description',
-         
-          render: (text, row, index) => (
-            <ModalTest modalTitle={'보고서 보기'} hold={this.props.hold} data={row} modify={this.props.modify} modifyConfirm={this.props.modifyConfirm} />          
-           ),
         }],
     }
     if(this.props.columns !== undefined){
@@ -121,7 +125,7 @@ handleReset = (clearFilters) => {
   render() {
     return (
       <div>
-        <Table columns={this.state.columns} dataSource={this.state.reports} />
+        <Table columns={this.state.columns} dataSource={this.state.reports} pagination={{ defaultPageSize: 4 }} />
       </div>
     );
   }

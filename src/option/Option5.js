@@ -9,19 +9,19 @@ class Option5 extends Component {
         this.state = {
             searchText: '',
             columns : [{
+              align: "center",
+              title: '업무',
+              dataIndex: 'taskTitle',
+              key: 'taskTitle',
+              ...this.getColumnSearchProps('taskTitle')
+            },{
                 align: "center",
                 title: '제목',
                 dataIndex: 'title',
                 key: 'title',
                 ...this.getColumnSearchProps('title')
               
-              },  {
-                align: "center",
-                title: '업무',
-                dataIndex: 'taskTitle',
-                key: 'taskTitle',
-                ...this.getColumnSearchProps('taskTitle')
-              },  {
+              },    {
                 align: "center",
                 title: '이름',
                 dataIndex: 'userName',
@@ -38,9 +38,8 @@ class Option5 extends Component {
                   return <div>{date.getFullYear()+"-"+
                           (date.getMonth()+1)+"-"+
                           date.getDate()}<br/>{
-                          date.getHours()+":"+
-                          date.getMinutes()+":"+
-                          date.getSeconds()
+                          date.getHours()+"시 "+
+                          date.getMinutes()+"분"
                            }</div>
                   }
               }]
@@ -109,8 +108,8 @@ class Option5 extends Component {
 
         return (
             <div>
-            <Card title='결제관리' headStyle={{backgroundColor:"#00B1B6",color:"#FBFBFB",fontWeight:"bold"}}>  
-               <Report title={'결제관리'} buttonTitle={'수정'} status={'PROGRESS'} route={'report'}
+            <Card title='결제수정' headStyle={{backgroundColor:"#00B1B6",color:"#FBFBFB",fontWeight:"bold"}}>  
+               <Report title={'결제관리'} buttonTitle={'수정'} status={'PROGRESS'} route={'report'} edit={'edit'}
                columns={this.state.columns}/>
             </Card>
             </div>

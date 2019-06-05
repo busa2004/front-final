@@ -22,6 +22,7 @@ class Report extends Component {
       value: { status: this.props.status },
       title: this.props.title,
       route: this.props.route,
+      edit:this.props.edit,
       taskId: null,
       user: this.props.currentUser,
       datas: null,
@@ -212,10 +213,28 @@ class Report extends Component {
     // console.log(this.props.currentUser)
 
     if (this.state.route === 'report') {
+      console.log(this.state.edit);
+      if(this.state.edit ==='edit'){
+        this.setState({
+          columns: this.props.columns.concat({
+            align: 'center',
+            title: '결제수정',
+            key: 'id',
+            render: (record, columns) => (
+  
+              <span>
+                <Option4modal
+                  progress={this.progress}
+                  route={this.state.route} record={record} title={this.state.buttonTitle} />
+              </span>
+            )
+          }),
+        });
+      }else{
       this.setState({
         columns: this.props.columns.concat({
           align: 'center',
-          title: 'action',
+          title: '확인',
           key: 'id',
           render: (record, columns) => (
 
@@ -226,15 +245,16 @@ class Report extends Component {
             </span>
           )
         }),
-      });
+      });}
     } else {
       this.setState({
         columns: this.props.columns.concat({
+          width:"15%",
           align: 'center',
-          title: 'action',
+          title: '확인 및 수정',
           key: 'id',
           render: (text, row, index) => (
-            <ModalTest modalTitle={'수정'} route={'task'}  data={row} modifyConfirm={this.modifyConfirm} />          
+            <ModalTest modalTitle={'확인'} route={'task'}  data={row} modifyConfirm={this.modifyConfirm} />          
            ),
         }),
       });

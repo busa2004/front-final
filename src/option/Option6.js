@@ -10,24 +10,12 @@ class Option6 extends Component {
         this.state = {
             searchText: '',
             columns : [{
-                width:"30%",
+                width:"70%",
                 align: "center",
-                title: '제목',
+                title: '업무제목',
                 dataIndex: 'title',
                 key: 'title',
                 ...this.getColumnSearchProps('title')   
-              }, {
-                width:"45%",
-                align: "center",
-                title: '내용',
-                dataIndex: 'content',
-                key: 'content',
-               
-                ...this.getColumnSearchProps('content'),
-                render: (text, row, index) => {
-                  // console.log(text,row,index)
-                  return  <div dangerouslySetInnerHTML={ {__html: text} }></div>
-                }
               },{
                 width:"15%",
                 align: "center",
