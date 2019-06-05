@@ -145,21 +145,24 @@ class EvalRank extends Component {
     });
     getTask()
       .then(response => {
-        let orderBy = [];
+        // let orderBy = [];
         let index = 0;
         response.map((item) => {
-          orderBy.push(response[response.length - (++index)]);
-          return null;
-        });
-        orderBy.map((item) => {
           item.taskNo =  this.state.noCount;
           this.setState({
             noCount: this.state.noCount + 1
           });
           return null;
         });
+        // orderBy.map((item) => {
+        //   item.taskNo =  this.state.noCount;
+        //   this.setState({
+        //     noCount: this.state.noCount + 1
+        //   });
+        //   return null;
+        // });
         this.setState({
-          evalDatas: orderBy,
+          evalDatas: response,
           isLoading: false
         });
       }).catch(error => {

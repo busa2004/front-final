@@ -122,7 +122,8 @@ class RegistrationForm extends React.Component {
 
 
     return (
-
+      <div>
+       <a href="https://api.slack.com/custom-integrations/legacy-tokens" target="_blank">슬랙키 보기</a>
       <Form {...formItemLayout} onSubmit={this.handleSubmit}>
         <Form.Item
           label="키"
@@ -136,7 +137,9 @@ class RegistrationForm extends React.Component {
           })(
             <Input />
           )}
+           
         </Form.Item>
+       
         <Form.Item
           label="채널"
         >
@@ -155,7 +158,7 @@ class RegistrationForm extends React.Component {
           <Button htmlType="submit">변경</Button>
         </Form.Item>
       </Form>
-
+      </div>
     );
   }
 }

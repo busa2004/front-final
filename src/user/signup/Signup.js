@@ -62,13 +62,13 @@ class Signup extends Component {
         .then(response => {
             notification.success({
                 message: '더존팩토리',
-                description: "Thank you! You're successfully registered. Please Login to continue!",
+                description: "회원가입에 성공하셨습니다!",
             });          
-            this.props.history.push("/login");
+            this.props.history.push("/signup");
         }).catch(error => {
             notification.error({
                 message: '더존팩토리',
-                description: error.message || 'Sorry! Something went wrong. Please try again!'
+                description: error.message || '회원가입에 실패하셨습니다. 다시 시도해주세요!'
             });
         });
     }
@@ -88,7 +88,7 @@ class Signup extends Component {
                 <div className="signup-content">
                     <Form onSubmit={this.handleSubmit} className="signup-form">
                         <FormItem 
-                            label="Full Name"
+                            label="성명"
                             validateStatus={this.state.name.validateStatus}
                             help={this.state.name.errorMsg}>
                             <Input 
@@ -99,7 +99,7 @@ class Signup extends Component {
                                 value={this.state.name.value} 
                                 onChange={(event) => this.handleInputChange(event, this.validateName)} />    
                         </FormItem>
-                        <FormItem label="Username"
+                        <FormItem label="사원번호"
                             hasFeedback
                             validateStatus={this.state.username.validateStatus}
                             help={this.state.username.errorMsg}>
@@ -107,13 +107,13 @@ class Signup extends Component {
                                 size="large"
                                 name="username" 
                                 autoComplete="off"
-                                placeholder="A unique username"
+                                placeholder="A unique usercode"
                                 value={this.state.username.value} 
                                 onBlur={this.validateUsernameAvailability}
                                 onChange={(event) => this.handleInputChange(event, this.validateUsername)} />    
                         </FormItem>
                         <FormItem 
-                            label="Email"
+                            label="이메일"
                             hasFeedback
                             validateStatus={this.state.email.validateStatus}
                             help={this.state.email.errorMsg}>
@@ -128,7 +128,7 @@ class Signup extends Component {
                                 onChange={(event) => this.handleInputChange(event, this.validateEmail)} />    
                         </FormItem>
                         <FormItem 
-                            label="Password"
+                            label="비밀번호"
                             validateStatus={this.state.password.validateStatus}
                             help={this.state.password.errorMsg}>
                             <Input 
@@ -208,12 +208,12 @@ class Signup extends Component {
         if(username.length < USERNAME_MIN_LENGTH) {
             return {
                 validateStatus: 'error',
-                errorMsg: `Username is too short (Minimum ${USERNAME_MIN_LENGTH} characters needed.)`
+                errorMsg: `UserCode is too short (Minimum ${USERNAME_MIN_LENGTH} characters needed.)`
             }
         } else if (username.length > USERNAME_MAX_LENGTH) {
             return {
                 validationStatus: 'error',
-                errorMsg: `Username is too long (Maximum ${USERNAME_MAX_LENGTH} characters allowed.)`
+                errorMsg: `UserCode is too long (Maximum ${USERNAME_MAX_LENGTH} characters allowed.)`
             }
         } else {
             return {

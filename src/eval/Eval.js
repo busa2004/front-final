@@ -35,7 +35,11 @@ class Eval extends Component {
         title: '업무 내용',
         dataIndex: 'content',
         key: 'content',
-        ...this.getColumnSearchProps('content')
+        ...this.getColumnSearchProps('content'),
+        render: (text,row) => {
+         
+          return  <div dangerouslySetInnerHTML={ {__html: text} }></div>
+        }
       }],
       visible: false,
       evalDatas: null,
@@ -111,22 +115,25 @@ class Eval extends Component {
     // 팀장권한에서 전체 업무리스트보기
     getTask()
       .then(response => {
-        let orderBy = [];
+        // let orderBy = [];
         let index = 0;
 
         response.map((item) => {
-          orderBy.push(response[response.length - (++index)]);
-          return null;
-        });
-        orderBy.map((item) => {
           item.taskNo =  this.state.nCount;
           this.setState({
             nCount: this.state.nCount+1
           });
           return null;
         });
+        // orderBy.map((item) => {
+        //   item.taskNo =  this.state.nCount;
+        //   this.setState({
+        //     nCount: this.state.nCount+1
+        //   });
+        //   return null;
+        // });
         this.setState({
-          evalDatas: orderBy,
+          evalDatas: response,
           isLoading: false,
           nCount: 1
         });

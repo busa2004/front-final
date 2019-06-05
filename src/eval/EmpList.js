@@ -13,7 +13,7 @@ class EmpList extends Component {
       columns: [{
         align: "center",
         title: '사번',
-        dataIndex: 'user.id',
+        dataIndex: 'user.username',
         key: 'user_id'
       }, {
         align: "center",

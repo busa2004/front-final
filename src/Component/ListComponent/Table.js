@@ -19,14 +19,14 @@ class DatePickers extends Component {
             key: 'taskTitle',
             ...this.getColumnSearchProps('taskTitle'),
           } ,{
-            width:"30%",
+            width:"25%",
           align:'center',
           title: '제목',
           dataIndex: 'title',
           key: 'title',
           ...this.getColumnSearchProps('title')
         },{
-          width:"9%",
+          width:"10%",
           align:'center',
           title: '상태',
           dataIndex: 'status',
@@ -34,6 +34,7 @@ class DatePickers extends Component {
           ...this.getColumnSearchProps('status'),
          
         } , {
+          width:"10%",
           align:'center',
           title: '보고서 보기',
           key: 'description',
@@ -43,7 +44,7 @@ class DatePickers extends Component {
             <ModalTest modalTitle={'보고서 보기'} hold={this.props.hold} data={row} modify={this.props.modify} modifyConfirm={this.props.modifyConfirm} />          
            ),
         }, {
-          width:"18%",
+          width:"15%",
           align:'center',
           title: '작성일자',
           dataIndex: 'date',

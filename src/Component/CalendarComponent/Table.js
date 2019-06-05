@@ -3,6 +3,7 @@ import { Table } from 'antd';
 import moment from 'moment';
 
 const columns = [{
+  align: "center",
   title: '상태',
   dataIndex: 'state',
   width: '20%',
@@ -10,10 +11,12 @@ const columns = [{
   // here is that finding the name started with `value`
 
 }, {
+  align: "center",
   title: '제목',
   dataIndex: 'title',
   width: '40%',
 }, {
+  align: "center",
   title: '내용',
   dataIndex: 'content',
   width: '40%',

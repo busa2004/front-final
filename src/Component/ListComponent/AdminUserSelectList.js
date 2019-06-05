@@ -96,7 +96,7 @@ class AdminUserSelectList extends Component {
                 <div className="edit-content">
                     <Form onSubmit={this.handleSubmit} className="signup-form">
                         <FormItem 
-                            label="Full Name"
+                            label="성명"
                             validateStatus={this.state.name.validateStatus}
                             help={this.state.name.errorMsg}>
                             <Input 
@@ -107,7 +107,7 @@ class AdminUserSelectList extends Component {
                                 value={this.state.name.value} 
                                 onChange={(event) => this.handleInputChange(event, this.validateName)} />    
                         </FormItem>
-                        <FormItem label="Username"
+                        <FormItem label="사원번호"
                             hasFeedback
                             validateStatus={this.state.username.validateStatus}
                             help={this.state.username.errorMsg}>
@@ -115,13 +115,13 @@ class AdminUserSelectList extends Component {
                                 size="large"
                                 name="username" 
                                 autoComplete="off"
-                                placeholder="A unique username"
+                                placeholder="A unique usercode"
                                 value={this.state.username.value} 
                                 onBlur={this.validateUsernameAvailability}
                                 onChange={(event) => this.handleInputChange(event, this.validateUsername)} />    
                         </FormItem>
                         <FormItem 
-                            label="Email"
+                            label="이메일"
                             hasFeedback
                             validateStatus={this.state.email.validateStatus}
                             help={this.state.email.errorMsg}>
@@ -136,7 +136,7 @@ class AdminUserSelectList extends Component {
                                 onChange={(event) => this.handleInputChange(event, this.validateEmail)} />    
                         </FormItem>
                         <FormItem 
-                            label="Password"
+                            label="비밀번호"
                             validateStatus={this.state.password.validateStatus}
                             help={this.state.password.errorMsg}>
                             <div style={{display:"flex", flexDirection: "row"}}>
@@ -157,7 +157,8 @@ class AdminUserSelectList extends Component {
                                 htmlType="submit" 
                                 size="large" 
                                 className="signup-form-button"
-                                disabled={this.isFormInvalid()}>수정하기</Button>
+                                >수정하기</Button>
+                            {/* disabled={this.isFormInvalid()} */}
                         </FormItem>
                     </Form>
                 </div>
