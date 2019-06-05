@@ -13,6 +13,7 @@ class TabForm extends Component {
             text: this.props.data.description,
             title: this.props.data.title,
             visible: false,
+            status:this.props.data.status,
             content: this.props.data.content,
             description: this.props.data.description,
             modify: this.props.modify,
@@ -67,7 +68,7 @@ class TabForm extends Component {
     }
     modify = () => {
         
-        if (this.props.modify === true) {
+        if (this.state.status === '대기' || this.props.route==='task') {
             return <div>
                 <div style={{width:"730px"}}>
                 <JoditEditor
@@ -89,7 +90,7 @@ class TabForm extends Component {
     }
 
     holdDescription = () => {
-        if (this.props.hold === true) {
+        if (this.state.status === '반려') {
             return <div>
                 <p></p>
                 <Card title="반려사유">

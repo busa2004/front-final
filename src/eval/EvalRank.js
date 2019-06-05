@@ -30,7 +30,11 @@ class EvalRank extends Component {
         title: '업무 내용',
         dataIndex: 'content',
         key: 'content',
-        ...this.getColumnSearchProps('content')
+        ...this.getColumnSearchProps('title'),
+        render: (text, record) => {
+          return <div dangerouslySetInnerHTML={ {__html: text} }></div>
+        }
+       
       }],
       visible: false,
       evalDatas: null,
@@ -107,6 +111,7 @@ class EvalRank extends Component {
         dataIndex: 'rank',
         key: 'rank',
         render: (text, record) => {
+         
           let getUserList = () => {
             this.getUserList(record);
           }

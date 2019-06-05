@@ -17,7 +17,8 @@ class TabForm extends Component {
             holdArray:[],
             waitArray:[],
             progressArray:[],
-            columns:this.props.columns
+            columns:this.props.columns,
+            arr:[]
         }
     }
 
@@ -27,7 +28,7 @@ class TabForm extends Component {
         return {
             "key": i, "title": this.state.reports[i].title,
             "content": this.state.reports[i].content,"date": this.state.reports[i].createdAt,
-             "status": this.state.reports[i].status,
+             "status": this.status(this.state.reports[i].status),
              "description" : this.state.reports[i].description,
              "id" :this.state.reports[i].id,
              "fileName":this.state.reports[i].fileName,
@@ -35,27 +36,39 @@ class TabForm extends Component {
             tags: ['cool', 'teacher']
             };
     }
+    status(text){
+        if(text==='PROGRESS'){
+            return '승인'
+          }else if(text === 'HOLD'){
+            return '반려'
+          }else{
+            return '대기'
+          }
+    }
 
     init(){
-      
-        let holdArray= [];
-        let waitArray= [];
-        let progressArray = [];
+        let arr=[];
+        // let holdArray= [];
+        // let waitArray= [];
+        // let progressArray = [];
      
         for(let i = 0 ;  i < this.state.length; i++){
-            if (this.state.reports[i].status === 'PROGRESS') {
-                progressArray.push(this.pushProperty(i));
-            }else if(this.state.reports[i].status === 'WAIT'){
-                waitArray.push(this.pushProperty(i));
-            }else if(this.state.reports[i].status === 'HOLD'){
-                holdArray.push(this.pushProperty(i));
-            }
-            
+            // if (this.state.reports[i].status === 'PROGRESS') {
+            //     progressArray.push(this.pushProperty(i));
+            // }else if(this.state.reports[i].status === 'WAIT'){
+            //     waitArray.push(this.pushProperty(i));
+            // }else if(this.state.reports[i].status === 'HOLD'){
+            //     holdArray.push(this.pushProperty(i));
+            // }
+            arr.push(this.pushProperty(i));
         }
+        // this.state={
+        //     holdArray:holdArray,
+        //     waitArray:waitArray,
+        //     progressArray:progressArray,
+        // }
         this.state={
-            holdArray:holdArray,
-            waitArray:waitArray,
-            progressArray:progressArray,
+            arr:arr
         }
        
     }
@@ -66,12 +79,13 @@ class TabForm extends Component {
          
             <div>
             <p></p>
-            <Tabs  type="card" defaultActiveKey="1" onChange={callback}>
+            <TableForm modifyConfirm={this.props.modifyConfirm} columns={this.props.columns} reports={this.state.arr}/>
+            {/* <Tabs  type="card" defaultActiveKey="1" onChange={callback}>
                 <TabPane tab="대기" key="1"><TableForm modifyConfirm={this.props.modifyConfirm} reports={this.state.waitArray} columns={this.props.columns} modify={true} /></TabPane>
                 <TabPane tab="승인" key="2"><TableForm reports={this.state.progressArray}/></TabPane>
                 <TabPane tab="반려" key="3"><TableForm reports={this.state.holdArray} hold={true} /></TabPane> 
                 
-            </Tabs>
+            </Tabs> */}
             </div>
         );
     }

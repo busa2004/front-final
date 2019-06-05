@@ -27,14 +27,16 @@ class Option3 extends Component {
                 dataIndex: 'id',
                 key: 'id',
                 
-                render: (text) => {
+                render: (text,row) => {
+                  
+                  if(row.status === '대기' ){
                   let confirm = () => {
                     this.loadDelete(text)
                   }
                   return <Popconfirm placement="top" title={'정말로 삭제하시겠습니까?'} onConfirm={confirm} okText="Yes" cancelText="No">
                     <Button type="danger" ghost >삭제</Button>
                   </Popconfirm>
-  
+                  }
   
                 }
               }

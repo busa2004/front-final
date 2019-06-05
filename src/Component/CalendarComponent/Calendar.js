@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import './Calendar.css';
-import { Calendar, Badge, Alert } from 'antd';
+import { Calendar, Badge, Alert, Modal } from 'antd';
 import moment from 'moment';
 import Option1Table from './Table';
 
 class Option1Calendar extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
         cal: this.props.calendar,
         selectedValue: moment(),
+        visible: false
         
     }
     this.getListData = this.getListData.bind(this);
@@ -22,14 +22,19 @@ class Option1Calendar extends Component {
    getListData(value) {
     let listData = [];
     let key = 0;
-   for(let i=0;i<this.state.cal.length;i++){
+   for(let i=this.state.cal.length-1;i>-1;i--){
     let year = parseInt(moment(this.state.cal[i].startDate).format('YYYY'),10);
     let endyear = parseInt(moment(this.state.cal[i].endDate).format('YYYY'),10);
     let month = parseInt(moment(this.state.cal[i].startDate).format('MM'),10)-1;
     let endmonth = parseInt(moment(this.state.cal[i].endDate).format('MM'),10)-1;
     let date = parseInt(moment(this.state.cal[i].startDate).format('DD'),10);
     let enddate = parseInt(moment(this.state.cal[i].endDate).format('DD'),10) ;
-
+    if(value.format('YYYY-MM-DD')>moment(this.state.cal[i].startDate).format('YYYY-MM-DD') &&
+     value.format('YYYY-MM-DD') < moment(this.state.cal[i].endDate).format('YYYY-MM-DD')){
+       listData.push({year: year, month: month+1, date: date, type: 'warning', content: this.state.cal[i].title
+                             ,key:  key}); 
+                             key++;
+     }
     switch(value.year()){
              case year :
                  switch(value.month()){
@@ -40,13 +45,12 @@ class Option1Calendar extends Component {
                             ,key:  key}); 
                             key++;
                             //console.log('--'+key)
-                            break;
+                            
                             default:
                             }
-                    break;
+                    
                     default:
                   }
-            
              case endyear :
                 switch(value.month()){
                    case endmonth:
@@ -56,13 +60,13 @@ class Option1Calendar extends Component {
                         ,key:key });
                         key++; 
                         //console.log('--'+key)
-                        break;
+                        
                        default:
                       }
-                      break;  
+                    
                    default:
                 }
-               break;
+               
            default:
       }
 }
@@ -70,6 +74,7 @@ class Option1Calendar extends Component {
 }
   
    dateCellRender(value) {
+    
     const listData = this.getListData(value);
     return (
       <ul className="events">
@@ -104,17 +109,46 @@ class Option1Calendar extends Component {
     this.setState({
       selectedValue: value,
     });
+    this.setState({
+      visible: true,
+    });
   }
+  // showModal = () => {
+  //   this.setState({
+  //     visible: true,
+  //   });
+  // };
 
+  handleOk = e => {
+   // console.log(e);
+    this.setState({
+      visible: false,
+    });
+  };
+
+  handleCancel = e => {
+    //console.log(e);
+    this.setState({
+      visible: false,
+    });
+  };
   onPanelChange = (value) => {
     this.setState({ value });
   }
     render() {
       return (
           <div>
+             <Modal
+          title="업무리스트"
+          visible={this.state.visible}
+          onOk={this.handleOk}
+          onCancel={this.handleCancel}
+        >
+          <Option1Table  data={this.props.calendar} time={this.state.selectedValue} />
+          </Modal>
             <Calendar dateCellRender={this.dateCellRender} monthCellRender={this.monthCellRender} onSelect={this.onSelect} onPanelChange={this.onPanelChange} />
-            <Alert message={`${this.state.selectedValue && this.state.selectedValue.format('YYYY-MM-DD')} 업무`} />
-            <Option1Table  data={this.props.calendar} time={this.state.selectedValue} />    
+            {/* <Alert message={`${this.state.selectedValue && this.state.selectedValue.format('YYYY-MM-DD')} 업무`} /> */}
+                
             </div>
         );
     }

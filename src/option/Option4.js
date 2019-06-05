@@ -32,7 +32,7 @@ class Option4 extends Component {
                 title: '날짜',
                 dataIndex: 'createdAt',
                 key: 'createdAt',
-                ...this.getColumnSearchProps('userName'),
+                ...this.getColumnSearchProps('createdAt'),
                 render: (text, row, index) => {
                 let date = new Date(text);
                 return <div>{date.getFullYear()+"-"+
@@ -116,7 +116,7 @@ class Option4 extends Component {
         return (
             <div>
               <Card title='업무보고현황' headStyle={{backgroundColor:"#00B1B6",color:"#FBFBFB",fontWeight:"bold"}}>
-                <Report  currentUser={this.props.currentUser} title={'업무보고현황'} buttonTitle={'결제'} status={'WAIT'} route={'report'} columns={this.state.columns}/>
+                <Report  currentUser={this.props.currentUser} title={'업무보고현황'} buttonTitle={'보고서 보기'} status={'WAIT'} route={'report'} columns={this.state.columns}/>
                 </Card>
             </div>
         );

@@ -234,7 +234,7 @@ class Report extends Component {
           title: 'action',
           key: 'id',
           render: (text, row, index) => (
-            <ModalTest modalTitle={'수정'} route={'task'} hold={false} data={row} modify={true} modifyConfirm={this.modifyConfirm} />          
+            <ModalTest modalTitle={'수정'} route={'task'}  data={row} modifyConfirm={this.modifyConfirm} />          
            ),
         }),
       });
