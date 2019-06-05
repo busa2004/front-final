@@ -13,7 +13,7 @@ class Sider extends React.Component {
     if(this.props.currentUser === 'ROLE_ADMIN'){
       this.setState({
         menu:[
-          <SubMenu key="sub2" title={<span><Icon type="appstore" /><span>관리자</span></span>}>
+          <SubMenu key="sub1" title={<span><Icon type="appstore" /><span>관리자</span></span>}>
           <Menu.Item key="4"><Link to="/Option4">업무보고현황</Link></Menu.Item>
           <Menu.Item key="5"><Link to="/Option5">결제수정</Link></Menu.Item>
           <Menu.Item key="6"><Link to="/Option6">업무리스트관리</Link></Menu.Item>
