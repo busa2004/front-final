@@ -12,6 +12,9 @@ import NotFound from '../../common/NotFound';
 import Selecter from '../WriteComponent/selecter';
 import ModalTest from './ModalTest';
 import { sendUser } from './Message';
+const error = (value) => {
+  message.error(value);
+};
 class Report extends Component {
   constructor(props) {
     super(props);
@@ -144,6 +147,11 @@ class Report extends Component {
 
   progress = (idData, stateData, textArea, reportTitle) => {
     let state = { state: stateData, id: idData, description: textArea };
+    
+    if(stateData === 'HOLD' && textArea === ''){
+      error('반려사유를 작성하여야 합니다.')
+      return;
+    }
     this.ModalLoad(state);
     // (state)
     if (stateData === 'PROGRESS') {
@@ -213,7 +221,6 @@ class Report extends Component {
     // console.log(this.props.currentUser)
 
     if (this.state.route === 'report') {
-      console.log(this.state.edit);
       if(this.state.edit ==='edit'){
         this.setState({
           columns: this.props.columns.concat({
