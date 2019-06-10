@@ -9,7 +9,7 @@ class Graph extends Component {
         this.state = {
             data:{
                 datasets: [{
-                    data: [ 30, 20],
+                    data: [ this.state.report[0].count, this.state.report[1].count],
                     backgroundColor: [ 
                     'rgba(255,255,192,1)',
                     'rgba(255,192,192,1)']
@@ -18,8 +18,8 @@ class Graph extends Component {
                 // These labels appear in the legend and in the tooltips when hovering different arcs
                 labels: [
                    
-                    '승인',
-                    '반려'
+                    this.state.report[0].status,
+                    this.state.report[1].status
                 ],
                
             },
