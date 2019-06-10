@@ -1,4 +1,5 @@
 import { sendByReport } from '../../util/APIUtils';
+import icon from '../../img/d.png'
 const Slack = require('slack-node');
 
 let key = 'xoxp-589802289765-590909935926-643901740581-fcabb98479fd40135eef063b62ea9ae3'
@@ -16,8 +17,9 @@ export function roomTitleChange(value) {
 export function send(message, slackKey, slackChannel) {
   let slack = new Slack(slackKey);
   slack.api('chat.postMessage', {
-    username: 'dev-test',  // 슬랙에 표시될 봇이름
+    username: 'douzone-command',  // 슬랙에 표시될 봇이름
     text: message,
+    iconurl:icon,
     channel: '#' + slackChannel  // 전송될 채널 및 유저
   }, function (err, response) {
     // console.log(response);
@@ -28,8 +30,9 @@ export function sendUser(message, reportId) {
   sendByReport(reportId).then(response => {
     let slack = new Slack(response.slackKey);
     slack.api('chat.postMessage', {
-      username: 'dev-test',  // 슬랙에 표시될 봇이름
+      username: 'douzone-command',  // 슬랙에 표시될 봇이름
       text: message,
+      iconurl:icon,
       channel: '#' + response.slackChannel  // 전송될 채널 및 유저
     }, function (err, response) {
       // console.log(response);

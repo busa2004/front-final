@@ -19,6 +19,7 @@ import Option5 from '../option/Option5';
 import Option6 from '../option/Option6';
 import Option7 from '../option/Option7';
 import Option8 from '../option/Option8';
+import Graph from '../option/Graph';
 import Option12 from '../option/Option12';
 import EvalRank from '../eval/EvalRank';
 import Profile from '../user/profile/Profile';
@@ -173,7 +174,15 @@ class App extends Component {
 
       <PrivateRoute authenticated={this.state.isAuthenticated} path="/Option3" handleLogout={this.handleLogout}
         component={(props) => <Option3 isAuthenticated={this.state.isAuthenticated} currentUser={this.state.currentUser} {...props} />}></PrivateRoute>
+
+
+      <PrivateRoute authenticated={this.state.isAuthenticated} path="/Graph" handleLogout={this.handleLogout}
+        component={(props) => <Graph isAuthenticated={this.state.isAuthenticated} currentUser={this.state.currentUser} {...props} />}></PrivateRoute>
+
+
       </div>
+
+      
       ];
     }
 

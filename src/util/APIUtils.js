@@ -38,7 +38,12 @@ export function getAllPolls(page, size) {
 
 
 
-
+export function getGraph() {
+    return request({
+        url: API_BASE_URL + "/report/graph",
+        method: 'POST'   
+    });
+}
 
 
 
