@@ -32,6 +32,7 @@ class ChartGraph extends Component {
           responsive: true,
           maintainAspectRatio: true,
         }}
+        width={600} height={200}
       />
  
             
