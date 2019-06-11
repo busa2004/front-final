@@ -19,6 +19,7 @@ import Option5 from '../option/Option5';
 import Option6 from '../option/Option6';
 import Option7 from '../option/Option7';
 import Option8 from '../option/Option8';
+import SendMessage from '../option/SendMessage';
 import Graph from '../option/Graph';
 import Option12 from '../option/Option12';
 import EvalRank from '../eval/EvalRank';
@@ -142,6 +143,9 @@ class App extends Component {
         {/* 업무 부여 */}
         <PrivateRoute authenticated={this.state.isAuthenticated} path="/Option8" handleLogout={this.handleLogout}
           component={(props) => <Option8 isAuthenticated={this.state.isAuthenticated} currentUser={this.state.currentUser} {...props} />}></PrivateRoute>
+
+        <PrivateRoute authenticated={this.state.isAuthenticated} path="/SendMessage" handleLogout={this.handleLogout}
+          component={(props) => <SendMessage isAuthenticated={this.state.isAuthenticated} currentUser={this.state.currentUser} {...props} />}></PrivateRoute>
 
         <PrivateRoute authenticated={this.state.isAuthenticated} path="/signup" handleLogout={this.handleLogout}
           component={(props) => <Signup isAuthenticated={this.state.isAuthenticated} currentUser={this.state.currentUser} {...props} />}></PrivateRoute>

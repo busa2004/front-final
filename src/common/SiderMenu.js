@@ -19,17 +19,19 @@ class Sider extends React.Component {
           <Menu.Item key="7"><Link to="/Option6">업무리스트관리</Link></Menu.Item>
           <Menu.Item key="8"><Link to="/Option7">업무등록</Link></Menu.Item>
           <Menu.Item key="9"><Link to="/Option8">업무부여</Link></Menu.Item>
+          
           <SubMenu key="sub3" title="평가">
-            <Menu.Item key="10"><Link to="/Eval">평가하기</Link></Menu.Item>
-            <Menu.Item key="11"><Link to="/EvalRank">평가순위</Link></Menu.Item>
-            <Menu.Item key="12"><Link to="/ManageEvalItem">평가항목관리</Link></Menu.Item>
+            <Menu.Item key="11"><Link to="/Eval">평가하기</Link></Menu.Item>
+            <Menu.Item key="12"><Link to="/EvalRank">평가순위</Link></Menu.Item>
+            <Menu.Item key="13"><Link to="/ManageEvalItem">평가항목관리</Link></Menu.Item>
           </SubMenu>
         </SubMenu>
         ],
         menu2:[
           <SubMenu key="sub4" title={<span><Icon type="setting" /><span>회원관리</span></span>}>
-          <Menu.Item key="13"> <Link to="/signup">회원가입</Link></Menu.Item>
-          <Menu.Item key="14"><Link to="/Option12">회원정보수정</Link></Menu.Item>
+          <Menu.Item key="14"> <Link to="/signup">회원가입</Link></Menu.Item>
+          <Menu.Item key="15"><Link to="/Option12">회원정보수정</Link></Menu.Item>
+          <Menu.Item key="10"><Link to="/SendMessage">메세지</Link></Menu.Item>
         </SubMenu>
 
         ]        
@@ -41,7 +43,7 @@ class Sider extends React.Component {
           <Menu.Item key="1"><Link to="/Option1">업무리스트</Link></Menu.Item>
           <Menu.Item key="2"><Link to="/Option2">보고서등록</Link>np</Menu.Item>
           <Menu.Item key="3"><Link to="/Option3">보고서관리</Link></Menu.Item>
-          {/* <Menu.Item key="4"><Link to="/Graph">Graph</Link></Menu.Item> */}
+          <Menu.Item key="4"><Link to="/Graph">Graph</Link></Menu.Item>
         </SubMenu>
         ]
       })

@@ -34,8 +34,12 @@ export function getAllPolls(page, size) {
         method: 'GET'
     });
 }
-
-
+export function getUserAll(search) {
+    return request({
+        url: API_BASE_URL + "/user/all?search="+search,
+        method: 'GET'   
+    });
+}
 
 
 export function getGraph() {

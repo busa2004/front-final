@@ -43,12 +43,12 @@ class LoginForm extends Component {
                     if(error.status === 401) {
                         notification.error({
                             message: '더존팩토리',
-                            description: 'Your Username or Password is incorrect. Please try again!'
+                            description: '비밀번호나 유저코드가 옳지 않습니다.'
                         });                    
                     } else {
                         notification.error({
                             message: '더존팩토리',
-                            description: error.message || 'Sorry! Something went wrong. Please try again!'
+                            description: error.message || '예상할 수 없는 오류가 발생했습니다.'
                         });                                            
                     }
                 });
