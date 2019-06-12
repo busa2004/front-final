@@ -44,7 +44,7 @@ export function getUserAll(search) {
 
 export function getGraph() {
     return request({
-        url: API_BASE_URL + "/report/graph",
+        url: API_BASE_URL + "/report/hold",
         method: 'POST'   
     });
 }

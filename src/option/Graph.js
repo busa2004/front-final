@@ -1,53 +1,42 @@
 import { Doughnut } from 'react-chartjs-2';
 import React, { Component } from 'react';
-import { Card,Table } from 'antd';
+import { Card, Table } from 'antd';
 import { getGraph } from '../util/APIUtils';
 import LoadingIndicator from '../common/LoadingIndicator';
 import ChartGraph from './ChartGraph'
 import ServerError from '../common/ServerError';
 import NotFound from '../common/NotFound';
-const dataSource = [
+
+var dateFormat = require('dateformat');
+var date = new Date();
+var now = date.getFullYear()+'-'+("0"+date.getMonth()).slice(-2);
+const columns = [
     {
-      key: '1',
-      name: 'Mike',
-      age: 32,
-      address: '10 Downing Street',
+        width: "50%",
+        align: 'center',
+        title: '반려 이유',
+        dataIndex: 'description',
+        key: 'description',
     },
     {
-      key: '2',
-      name: 'John',
-      age: 42,
-      address: '10 Downing Street',
+        width: "50%",
+        align: 'center',
+        title: '횟수',
+        dataIndex: 'count',
+        key: 'count',
     },
-  ];
-  
-  const columns = [
-    {
-      title: 'Name',
-      dataIndex: 'name',
-      key: 'name',
-    },
-    {
-      title: 'Age',
-      dataIndex: 'age',
-      key: 'age',
-    },
-    {
-      title: 'Address',
-      dataIndex: 'address',
-      key: 'address',
-    },
-  ];
-  
+
+];
+
 
 class Graph extends Component {
     constructor(props) {
         super(props);
-      
-       this.state={
-           data:null
-       }
-            
+
+        this.state = {
+            data: null
+        }
+
     }
     loadGraph() {
         this.setState({
@@ -55,12 +44,20 @@ class Graph extends Component {
         });
         getGraph()
             .then(response => {
-               
+
                 this.setState({
                     data: response,
                     isLoading: false
                 });
-                console.log(this.state.data)
+                //
+                this.state.data.graph.map((value,index) =>
+                {if(index==0 && value.status=='HOLD'){
+                  this.state.data.graph.push({status:'HOLD',count:this.state.data.graph[0].count});
+                  this.state.data.graph[0].count=0;
+                  this.state.data.graph[0].status="PROGRESS";
+                }
+              })
+                //
             }).catch(error => {
                 if (error.status === 404) {
                     this.setState({
@@ -75,51 +72,66 @@ class Graph extends Component {
                 }
             });
     }
-    branch(){
-      
-        
-        if(Object.keys(this.state.data).length === 0 ){
-           <p>결제된 보고서가 존재하지 않습니다.</p>
-        }
-        else if(Object.keys(this.state.data).length === 1 ){
-            
-            if(this.state.data[0].status ==='HOLD')
-            this.state.data.push({count:0,status:'PROGRESS'})
-            else{
-            this.state.data.push({count:0,status:'HOLD'})
-            }
-            return <ChartGraph data={this.state.data}/>
-        }else if(Object.keys(this.state.data).length ===2 ){
+    // branch(){
 
-        return <ChartGraph data={this.state.data}/>
-        }
-    }
-    componentWillMount(){
+
+    //     if(Object.keys(this.state.data).length === 0 ){
+    //        <p>결제된 보고서가 존재하지 않습니다.</p>
+    //     }
+    //     else if(Object.keys(this.state.data).length === 1 ){
+
+    //         if(this.state.data[0].status ==='HOLD')
+    //         this.state.data.push({count:0,status:'PROGRESS'})
+    //         else{
+    //         this.state.data.push({count:0,status:'HOLD'})
+    //         }
+    //         return <ChartGraph data={this.state.data}/>
+    //     }else if(Object.keys(this.state.data).length ===2 ){
+
+    //     return <ChartGraph data={this.state.data}/>
+    //     }
+    // }
+    componentWillMount() {
         this.loadGraph()
     }
-    render () {
-    if(this.state.isLoading) {
+    render() {
+        if (this.state.isLoading) {
             return <LoadingIndicator />
-    }
-    if(this.state.notFound) {
-        return <NotFound />;
-      }
-      
-      if(this.state.serverError) {
-        return <ServerError />;
-      }
+        }
+        if (this.state.notFound) {
+            return <NotFound />;
+        }
+
+        if (this.state.serverError) {
+            return <ServerError />;
+        }
         return (
             <div>
-        
-            <Card headStyle={{backgroundColor:"#00B1B6",color:"#FBFBFB",fontWeight:"bold"}}
-            bodyStyle={{backgroundColor:"16448250"}}  title='업무리스트'>
-       {this.branch()}   
-       <Table dataSource={dataSource} columns={columns} />
-        </Card> 
-        
-        </div>
-            )
-          
+                <Card headStyle={{ backgroundColor: "#00B1B6", color: "#FBFBFB", fontWeight: "bold" }}
+                    bodyStyle={{ backgroundColor: "16448250" }} title='반려 분석'>
+                    {this.state.data.graph.length == 0 ?
+                        <p>반려된 보고서가 존재하지 않습니다.</p> :
+                        <div>
+                            
+                            <h1>전체 반려율은 {Math.ceil(this.state.data.graph[1].count/
+                                (this.state.data.graph[0].count+this.state.data.graph[1].count)*100)}%이며 
+                            전월 반려율은 {this.state.data.rate.map((value)=>{
+                                if(value.m == now){
+                                    return Math.ceil(value.hold/(value.progress+value.hold)*100)
+                                }
+                             
+                            })}%입니다.</h1>
+                            
+                            <ChartGraph data={this.state.data} />
+
+                            <Table dataSource={this.state.data.description} columns={columns} pagination={{ defaultPageSize: 3 }}/>
+                        </div>
+                    }
+                </Card>
+
+            </div>
+        )
+
     }
 }
 

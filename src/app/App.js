@@ -242,7 +242,7 @@ class App extends Component {
               </Fragment>
             </Switch>
           </Layout>
-          <Footer style={{ textAlign: 'center' }}>
+          <Footer style={{ textAlign: 'center',width:"1680px" }}>
             Design ©2019 Created by SungJun
           </Footer>
         </Content>

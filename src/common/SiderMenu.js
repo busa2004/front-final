@@ -43,7 +43,7 @@ class Sider extends React.Component {
           <Menu.Item key="1"><Link to="/Option1">업무리스트</Link></Menu.Item>
           <Menu.Item key="2"><Link to="/Option2">보고서등록</Link>np</Menu.Item>
           <Menu.Item key="3"><Link to="/Option3">보고서관리</Link></Menu.Item>
-          <Menu.Item key="4"><Link to="/Graph">Graph</Link></Menu.Item>
+          <Menu.Item key="4"><Link to="/Graph">반려분석</Link></Menu.Item>
         </SubMenu>
         ]
       })

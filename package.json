@@ -10,6 +10,7 @@
     "botkit": "^4.0.2",
     "chart.js": "^2.8.0",
     "core-js": "^3.1.2",
+    "dateformat": "^3.0.3",
     "draft-js": "^0.10.5",
     "jodit": "^3.2.44",
     "jodit-react": "^1.0.26",
@@ -26,6 +27,7 @@
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.5",
     "react-sticky": "^6.0.3",
+    "recharts": "^1.6.2",
     "reqwest": "^2.0.5",
     "slack-node": "^0.1.8",
     "tui-editor": "^1.4.0"
