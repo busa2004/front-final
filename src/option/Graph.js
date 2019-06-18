@@ -115,7 +115,7 @@ class Graph extends Component {
             <div>
                 <Card headStyle={{ backgroundColor: "#00B1B6", color: "#FBFBFB", fontWeight: "bold" }}
                     bodyStyle={{ backgroundColor: "16448250" }} title='반려 분석'>
-                        {console.log(this.state.data.graph)}
+                      
                     {this.state.data.graph.length == 0  ?
                         <p>반려된 보고서가 존재하지 않습니다.</p> :
                         <div>

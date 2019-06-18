@@ -7,11 +7,11 @@ let roomTitle
 //xoxp-589802289765-587062052432-637522247233-ecdfb5f0a09821fa899e7556d06c2a0d
 export function keyChange(value) {
   key = value;
-  console.log(key)
+  //console.log(key)
 }
 export function roomTitleChange(value) {
   roomTitle = value;
-  console.log(key)
+  //console.log(key)
 }
 
 export function send(message, slackKey, slackChannel) {
