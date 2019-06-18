@@ -33,7 +33,7 @@ class ChartGraph extends Component {
                         value.count)
                     ,
                     backgroundColor: [
-                        'rgba(83,148,204,1)','rgba(203,88,85,1)'
+                        'rgba(0,160,233,1)','rgba(203,88,85,1)'
                         ]
                 }],
 
@@ -106,9 +106,9 @@ class ChartGraph extends Component {
                             <XAxis dataKey="m" />
                             <YAxis />
                             <Tooltip />
-                            <Legend  payload={[{value:'승인',color:"#5082bd",type:"square"},
+                            <Legend  payload={[{value:'승인',color:"#00a0e9",type:"square"},
                         {value:'반려',color:"#cb5855",type:"square"}]}/>
-                            <Bar dataKey="progress" fill="#5082bd" />
+                            <Bar dataKey="progress" fill="#00a0e9" />
                             <Bar dataKey="hold" fill="#cb5855" />
                         </BarChart>
                         </Card>

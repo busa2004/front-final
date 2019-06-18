@@ -92,7 +92,7 @@ class Report extends Component {
             isLoading: false
 
            });
-           console.log(this.state.datas);
+           //console.log(this.state.datas);
         }).catch(error => {
           if (error.status === 404) {
             this.setState({
@@ -155,9 +155,9 @@ class Report extends Component {
     this.ModalLoad(state);
     // (state)
     if (stateData === 'PROGRESS') {
-      sendUser(reportTitle + '가 승인되었습니다.\n http://localhost:3000/Option3', idData);
+      sendUser(reportTitle + '가 승인되었습니다.\n ', idData);
     } else if (stateData === 'HOLD') {
-      sendUser(reportTitle + '가 반려되었습니다.\n http://localhost:3000/Option3', idData);
+      sendUser(reportTitle + '가 반려되었습니다.\n ', idData);
     }
   }
 

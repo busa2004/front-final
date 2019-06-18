@@ -167,7 +167,7 @@ class App extends Component {
 
       </div>]
     }else if(this.state.currentUser !== null && this.state.currentUser.authorities[0].authority === 'ROLE_USER'){
-      admin = [<div>
+      admin = [<div  key="user">
          <PrivateRoute authenticated={this.state.isAuthenticated} exact path="/" handleLogout={this.handleLogout}
                       component={(props) => <Option1 isAuthenticated={this.state.isAuthenticated} currentUser={this.state.currentUser} {...props} />}></PrivateRoute>
                    

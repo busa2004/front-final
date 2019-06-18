@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import { Modal, Button, Row, Card,Input } from 'antd';
+import { Modal, Button, Row, Card,Input,Col } from 'antd';
 import 'jodit';
 import 'jodit/build/jodit.min.css';
 import JoditEditor from "jodit-react";
@@ -130,7 +130,7 @@ class TabForm extends Component {
     render() {
         // console.log(this.state.fileName)
         return (
-            <div>
+            <Col>
 
                 <Button onClick={this.showModal}>
                     {this.props.modalTitle}
@@ -158,7 +158,7 @@ class TabForm extends Component {
                     {this.file()}
                 </Modal>
 
-            </div>);
+            </Col>);
     }
 }
 export default TabForm;

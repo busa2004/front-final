@@ -11,6 +11,7 @@ var dateFormat = require('dateformat');
 var date = new Date();
 var now = date.getFullYear()+'-'+("0"+date.getMonth()).slice(-2);
 const columns = [
+  
     {
         width: "50%",
         align: 'center',
@@ -47,7 +48,7 @@ class Graph extends Component {
 
                 this.setState({
                     data: response,
-                    isLoading: false
+                    
                 });
                 //
                 this.state.data.graph.map((value,index) =>
@@ -57,6 +58,11 @@ class Graph extends Component {
                   this.state.data.graph[0].status="PROGRESS";
                 }
               })
+
+              this.setState({
+              
+                isLoading: false
+            });
                 //
             }).catch(error => {
                 if (error.status === 404) {
@@ -109,7 +115,8 @@ class Graph extends Component {
             <div>
                 <Card headStyle={{ backgroundColor: "#00B1B6", color: "#FBFBFB", fontWeight: "bold" }}
                     bodyStyle={{ backgroundColor: "16448250" }} title='반려 분석'>
-                    {this.state.data.graph.length == 0 ?
+                        {console.log(this.state.data.graph)}
+                    {this.state.data.graph.length == 0  ?
                         <p>반려된 보고서가 존재하지 않습니다.</p> :
                         <div>
                             
@@ -124,7 +131,7 @@ class Graph extends Component {
                             
                             <ChartGraph data={this.state.data} />
 
-                            <Table dataSource={this.state.data.description} columns={columns} pagination={{ defaultPageSize: 3 }}/>
+                            <Table  rowKey={'description'} dataSource={this.state.data.description} columns={columns} pagination={{ defaultPageSize: 3 }}/>
                         </div>
                     }
                 </Card>

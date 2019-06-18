@@ -40,7 +40,12 @@ export function getUserAll(search) {
         method: 'GET'   
     });
 }
-
+export function getReportByTaskId(userTaskId) {
+    return request({
+        url: API_BASE_URL + "/report/getByUserTaskId?userTaskId="+userTaskId,
+        method: 'GET'   
+    });
+}
 
 export function getGraph() {
     return request({

@@ -38,7 +38,7 @@ class SendMessage extends Component {
                     data: response,
                     isLoading: false
                 });
-                console.log(response)
+               // console.log(response)
             }).catch(error => {
                 if (error.status === 404) {
                     this.setState({
@@ -78,7 +78,7 @@ class SendMessage extends Component {
       rowSelection = {
         onChange: (selectedRowKeys, selectedRows) => {
          
-          console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
+          //console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
           this.setState({
             selectedRows:selectedRows
           });
