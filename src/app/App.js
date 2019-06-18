@@ -128,7 +128,7 @@ class App extends Component {
         <PrivateRoute authenticated={this.state.isAuthenticated} path="/Option4" handleLogout={this.handleLogout}
           component={(props) => <Option4 isAuthenticated={this.state.isAuthenticated} currentUser={this.state.currentUser} {...props} />}></PrivateRoute>
 
-        {/* 결제관리 */}
+        {/* 결재관리 */}
         <PrivateRoute authenticated={this.state.isAuthenticated} path="/Option5" handleLogout={this.handleLogout}
           component={(props) => <Option5 isAuthenticated={this.state.isAuthenticated} currentUser={this.state.currentUser} {...props} />}></PrivateRoute>
 

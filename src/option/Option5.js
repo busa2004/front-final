@@ -108,8 +108,8 @@ class Option5 extends Component {
 
         return (
             <div>
-            <Card title='결제수정' headStyle={{backgroundColor:"#00B1B6",color:"#FBFBFB",fontWeight:"bold"}}>  
-               <Report title={'결제관리'} buttonTitle={'수정'} status={'PROGRESS'} route={'report'} edit={'edit'}
+            <Card title='결재수정' headStyle={{backgroundColor:"#00B1B6",color:"#FBFBFB",fontWeight:"bold"}}>  
+               <Report title={'결재관리'} buttonTitle={'수정'} status={'PROGRESS'} route={'report'} edit={'edit'}
                columns={this.state.columns}/>
             </Card>
             </div>

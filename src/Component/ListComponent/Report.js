@@ -225,7 +225,7 @@ class Report extends Component {
         this.setState({
           columns: this.props.columns.concat({
             align: 'center',
-            title: '결제수정',
+            title: '결재수정',
             key: 'id',
             render: (record, columns) => (
   

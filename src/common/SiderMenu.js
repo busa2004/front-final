@@ -15,7 +15,7 @@ class Sider extends React.Component {
         menu:[
           <SubMenu key="sub1" title={<span><Icon type="appstore" /><span>관리자</span></span>}>
           <Menu.Item key="5"><Link to="/Option4">업무보고현황</Link></Menu.Item>
-          <Menu.Item key="6"><Link to="/Option5">결제수정</Link></Menu.Item>
+          <Menu.Item key="6"><Link to="/Option5">결재수정</Link></Menu.Item>
           <Menu.Item key="7"><Link to="/Option6">업무리스트관리</Link></Menu.Item>
           <Menu.Item key="8"><Link to="/Option7">업무등록</Link></Menu.Item>
           <Menu.Item key="9"><Link to="/Option8">업무부여</Link></Menu.Item>

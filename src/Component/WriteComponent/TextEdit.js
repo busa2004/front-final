@@ -239,7 +239,7 @@ class TextEdit extends Component {
                                 <Option value={html3()}>월간 보고서</Option>
                             </Select>
                             <Input title={'title'} value={this.state.title} style={{ width: '65%', marginRight: "0px" }} placeholder="제목" onChange={this.onChange} />
-                            <Select style={{ width: '14%', marginLeft: "1%" }} placeholder="결제선 지정">
+                            <Select style={{ width: '14%', marginLeft: "1%" }} placeholder="결재선 지정">
                                 <Option value="팀장">팀장</Option>
                             </Select>
                         </InputGroup>
