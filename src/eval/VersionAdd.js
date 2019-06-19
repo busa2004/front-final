@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import { Input, Form, Modal, notification, Button } from 'antd';
 import FormItem from 'antd/lib/form/FormItem';
-import {
-    
-    withRouter
-} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import ItemTable from './ItemTable';
-import { setEvalVersion } from '../util/APIUtils';
+import { setEvalVersion, getAllEvalVersion } from '../util/APIUtils';
 
 class VersionAdd extends Component {
     constructor(props) {
@@ -67,29 +64,70 @@ class VersionAdd extends Component {
             version: this.state.version.value,
             dataSource: this.state.dataSource
         }
-        await setEvalVersion(versionValue)
-            .then(response => {
-                notification.success({ // 옆에 표시 띄우기
-                    message: 'Message',
-                    description: "평가항목이 저장되었습니다."
-                })
-            }).catch(error => {
+        if(versionValue.dataSource === null || versionValue.dataSource.length === 0) {
+            notification.error({
+                message: 'Message',
+                description: "평가항목을 입력해주세요"
+            });
+        } else {
+            let isContentBlank = false;
+            versionValue.dataSource.map((item) => {
+                if(item.content === "평가항목을 입력해주세요." || item.content === "") {
+                    isContentBlank = true;
+                }
+            });
+            if(isContentBlank === true) {
                 notification.error({
                     message: 'Message',
-                    description: "평가항목 저장을 실패하였습니다."
-                })
-            });
-        // ok됐을때 modal 초기화
-        this.setState({
-            visible: false,
-            version: {
-                value: ''
-            },
-            dataSource: [],
-            states:"off",
-        });
-        this.props.changeItemList(true);
-       
+                    description: "평가항목을 입력해주세요"
+                });
+            } else if(versionValue.version === "") {
+                notification.error({
+                    message: 'Message',
+                    description: "버전명을 입력해주세요"
+                });
+            } else {
+                let isExistVersionName = false;
+                // 버전명이 있는지 없는지 확인하기
+                await getAllEvalVersion()
+                .then(response => {
+                    response.map((item) => {
+                        if(item === versionValue.version) {
+                            notification.error({
+                                message: 'Message',
+                                description: "존재하는 버전명입니다."
+                            });
+                            isExistVersionName = true;
+                        }
+                    });
+                });
+                if(isExistVersionName === false) {
+                    await setEvalVersion(versionValue)
+                    .then(response => {
+                        notification.success({ // 옆에 표시 띄우기
+                            message: 'Message',
+                            description: "평가항목이 저장되었습니다."
+                        })
+                    }).catch(error => {
+                        notification.error({
+                            message: 'Message',
+                            description: "평가항목 저장을 실패하였습니다."
+                        })
+                    });
+                    // ok됐을때 modal 초기화
+                    this.setState({
+                        visible: false,
+                        version: {
+                            value: ''
+                        },
+                        dataSource: [],
+                        states:"off",
+                    });
+                    this.props.changeItemList(true);
+                   
+                }
+            }        
+        }        
     }
     render() {
         return (
