@@ -122,30 +122,20 @@ class ItemTable extends Component {
       });
     }
 }
-  // // render 후 props로부터 받는 값이 변동이 생겼을 때 state 값을 바꿔준다.
-  // static getDerivedStateFromProps(props, state) {
-  //   console.log(props); // props
-  //   console.log(state); // state
-  //   if (props.itemList !== state.itemList) {
-  //       return {
-  //         dataSource: props.itemList // dataSource가 table에서 값을 뿌리는 역할
-  //       };
-  //   }
-  //   return null;
-  // }
 
-  handleAdd = () => {
-    const { count, dataSource } = this.state;
-    const newData = {
-      key: count,
-      itemNo: count,
-      content: '평가항목을 입력해주세요.'
-    };
-    this.setState({
-      dataSource: [...dataSource, newData],
-      count: count + 1,
-    });
-  }
+handleAdd = () => {
+  const { count, dataSource } = this.state;
+  const newData = {
+    key: count,
+    itemNo: count,
+    content: '평가항목을 입력해주세요.'
+  };
+  this.setState({
+    dataSource: [...dataSource, newData],
+    count: count + 1,
+  });
+  this.props.addDataSource(newData);
+}
 
   componentDidMount() {
     if(this.state.state === 'eval') {

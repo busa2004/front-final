@@ -10,7 +10,7 @@ class VersionAdd extends Component {
         super(props);
         this.state = {
             visible: false,
-            dataSource: null,
+            dataSource: [],
             version: { value: '' },
             states:"off",
             data:[{
@@ -56,6 +56,21 @@ class VersionAdd extends Component {
                 value: inputValue,
             }
         });
+    }    
+    addDataSource = async (newData) => {
+        if(this.state.dataSource.length === 0) {
+            let tmpData = this.state.data;
+            tmpData.push(newData);
+            await this.setState({
+                dataSource: tmpData
+            });
+        } else {
+            let tmpData = this.state.dataSource;
+            tmpData.push(newData);
+            this.setState({
+                dataSource: tmpData
+            });            
+        }
     }
     handleOk  = async (event) => {
         event.preventDefault();
@@ -144,6 +159,7 @@ class VersionAdd extends Component {
                         getDataSource={this.dataSourceCallback}
                         states={this.state.states}
                         dataSource={this.state.data}
+                        addDataSource={this.addDataSource}
                         />
                     <div style={{ marginTop: "10px" }}>
                         <Form>

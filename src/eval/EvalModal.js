@@ -64,27 +64,31 @@ class EvalModal extends Component {
             });
           })
           .catch(error => {
-            // console.log(error)
-          });
+            console.log(error);
+            notification.error({
+              message: 'Message',
+              description: "평가저장을 실패하였습니다."
+            })
+          }); 
       } else if(this.props.buttonName === '평가') {
-        // console.log(evalUserTask);
+        console.log(evalUserTask);
         setEvalScore(evalUserTask)
           .then(response => {
             notification.success({ // 옆에 표시 띄우기
               message: 'Message',
               description: "평가가 저장되었습니다."
             });
+            // 버튼 이름 평가 -> 수정으로 고침
+            const successEvalUserTaskId = evalUserTask.userTask.id;
+            this.props.changeButtonName(successEvalUserTaskId); 
           })
           .catch(error => {
-            // console.log(error);
+            console.log(error);
             notification.error({
               message: 'Message',
               description: "평가저장을 실패하였습니다."
             })
-          });  
-          // 버튼 이름 평가 -> 수정으로 고침
-          const successEvalUserTaskId = evalUserTask.userTask.id;
-          this.props.changeButtonName(successEvalUserTaskId);  
+          });   
       }
       scoreRange = false;
       this.props.modalControl(false);

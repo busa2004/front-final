@@ -261,7 +261,7 @@ class Eval extends Component {
         if(response === 'NaN') {
           reportValue.value= "점수가 없습니다."
         } else {
-          reportValue.value = response.toFixed(0);
+          reportValue.value = response.toFixed(0)*1;
         }        
         this.setState({
           report: reportValue
