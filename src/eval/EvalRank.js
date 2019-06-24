@@ -371,7 +371,7 @@ class EvalRank extends Component {
             const rank = {};
             rank.rank = rankCount;
             rank.taskId = userListItem.id;
-            rank.userId = userListItem.user.id;
+            rank.userId = userListItem.user.username;
             rank.userName = userListItem.user.name;
             rank.score= (item.score).toFixed(2);
             rankCount++;
